@@ -3,9 +3,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -41,6 +39,7 @@
                                     </tfoot>
                                     <tbody>
                                         <?php
+                                      
                                          $con = new mysqli("localhost", "root", "", "realstate");
                                       
                                                  $query = "SELECT * FROM properties Order By id desc";
@@ -57,10 +56,20 @@
                                             <td><?php echo $value['bed_room']." Bed ".$value['living_room']."Drowing-Dining".$value['kitchen']."Kitchen".$value['toilet']."Toilet"; ?></td>
                                             <td><?php echo $value['price']; ?></td>
                                             <td><?php echo $value['discount']; ?></td>
-                                            <td><img style="height: 50px;width:50px;" src="<?php echo $value['image_one']; ?>" alt=""></td>
-                                            <td><a href="#">Edit</a>||<a href="#">Delete</a></td>
+                                            <td><img class="admin-image" src="<?php echo $value['image_one']; ?>" alt=""></td>
+                                            <td><a href="edit_flat.php?id=<?php echo $value['id'];?>">Edit</a>||<a href="?delete=<?php echo $value['id'];?>">Delete</a></td>
                                         </tr>
-                                                        <?php }} ?>
+                                                        <?php }}
+                                                          if (isset($_GET['delete'])) {
+                                                            $delid=$_GET['delete'];
+                                                            $query = "DELETE FROM properties WHERE id=$delid";
+                                                            $result = $con->query($query);
+                                                            if ($result) {
+                                                                echo "<script>window.location='view_flat.php';</script>";
+                                                            }
+                                                               // echo "<script>window.location='view_flat.php';</script>";
+                                                        }
+                                                        ?>
                                     </tbody>
                                 </table>
                             </div>

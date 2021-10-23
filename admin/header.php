@@ -36,6 +36,7 @@ if($_SESSION['admin']!="admin"){
   color:green;
   font-weight: 500;
 }
+.admin-image{height: 50px;width:50px;}
 
 </style>
 </head>
