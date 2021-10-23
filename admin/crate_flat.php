@@ -32,9 +32,9 @@
                         $div3            = explode('.', $filenamethree);
 			            $file_ext3       = strtolower(end($div3));
 			            $three   = substr(md5(time()), 0, 10).'.'.$file_ext3;
-                            $folder1 = "../images/".$one;
-                            $folder2 = "../images/".$two;
-                            $folder3 = "../images/".$three;
+                            $folder1 = "images/".$one;
+                            $folder2 = "images/".$two;
+                            $folder3 = "images/".$three;
 
                         if (empty($title) || empty($description) ||empty($location) ) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>"; 

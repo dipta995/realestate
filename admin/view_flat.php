@@ -56,7 +56,7 @@
                                             <td><?php echo $value['bed_room']." Bed ".$value['living_room']."Drowing-Dining".$value['kitchen']."Kitchen".$value['toilet']."Toilet"; ?></td>
                                             <td><?php echo $value['price']; ?></td>
                                             <td><?php echo $value['discount']; ?></td>
-                                            <td><img class="admin-image" src="<?php echo $value['image_one']; ?>" alt=""></td>
+                                            <td><img class="admin-image" src="../<?php echo $value['image_one']; ?>" alt=""></td>
                                             <td><a href="edit_flat.php?id=<?php echo $value['id'];?>">Edit</a>||<a href="?delete=<?php echo $value['id'];?>">Delete</a></td>
                                         </tr>
                                                         <?php }}

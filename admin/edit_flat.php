@@ -170,7 +170,7 @@
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Image two</label>
                                     <input type="file" name="image_two" class="form-control" id="exampleInputEmail1" ><br>
-                                    <img class="admin-image" src="<?php echo $value['image_two'];?>" alt="">
+                                    <img class="admin-image" src="../<?php echo $value['image_two'];?>" alt="">
                                     
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Image three</label>
                                     <input type="file" name="image_three" class="form-control" id="exampleInputEmail1" ><br>
-                                    <img class="admin-image" src="<?php echo $value['image_three'];?>" alt="">
+                                    <img class="admin-image" src="../<?php echo $value['image_three'];?>" alt="">
                                     
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
                         <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">location</label>
-                                    <input type="text" value="<?php echo $value['location'];?>" name="location" class="form-control" id="exampleInputEmail1" >
+                                    <input type="text" value="../<?php echo $value['location'];?>" name="location" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                         </div>
