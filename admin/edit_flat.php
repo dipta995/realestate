@@ -1,9 +1,21 @@
 <?php include 'header.php'; ?>
                 <div class="container-fluid">
                     <?php
-                   
+                   $con = new mysqli("localhost", "root", "", "realstate");
+                   if (empty($_GET['id']) || $_GET['id']==NULL|| !isset($_GET['id'])) {
+                    echo "<script>window.location='view_flat.php';</script>";
+         
+                }
+                else {
+                    $flatid=$_GET['id'];
+                    $query = "SELECT * FROM properties WHERE id=$flatid";
+                    $result = $con->query($query);
+                    if ($result->num_rows > 0) {
+                        $value = mysqli_fetch_array($result);
+                    }
+                }
 
-                    $con = new mysqli("localhost", "root", "", "realstate");
+                    
                     if(isset($_POST['submit'])){
                         $title = $_POST['title'];
                         $description = $_POST['description'];
@@ -34,46 +46,71 @@
                         $div3            = explode('.', $filenamethree);
 			            $file_ext3       = strtolower(end($div3));
 			            $three   = substr(md5(time()), 0, 10).'.'.$file_ext3;
-                            $folder1 = "../images/".$one;
-                            $folder2 = "../images/".$two;
-                            $folder3 = "../images/".$three;
+                            $folder1 = "images/".$one;
+                            $folder2 = "images/".$two;
+                            $folder3 = "images/".$three;
 
                         if (empty($title) || empty($description) ||empty($location) ) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>"; 
-                        }elseif (empty($file_ext1) || empty($file_ext2)||empty($file_ext3)) {
-                            echo "<span class='error-msg'>Three image is required</span>";
+                        }elseif (empty($file_ext1) && empty($file_ext2) && empty($file_ext3)) {
+                            $sql = "UPDATE properties  
+                                    SET
+                                    title       = '$title',
+                                    description = '$description',
+                                    price       ='$price',
+                                    discount    ='$discount',
+                                    quantity    ='$quantity',
+                                    bed_room    ='$bed_room',
+                                    living_room ='$living_room',
+                                    kitchen     ='$kitchen',
+                                    parking     ='$parking',
+                                    toilet      ='$toilet',
+                                    location    ='$location'
+                                    WHERE id=$flatid";
+                                     if ($con->query($sql)) {
+                       
+                                  echo "<script>window.location='view_flat.php';</script>";
+                                //echo "<span class='success-msg'>New record created successfully</span>";
+                                } else {
+                                    echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
+                                }
                         }
+                       
+                        
+                        
+                        
                         else{
-                            $sql = "INSERT INTO properties (title,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three)
-                    VALUES ('$title','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',1,'$folder1','$folder2','$folder3')";
-
-                    if ($con->query($sql) === TRUE) {
+                            $sql = "UPDATE properties 
+                                    SET
+                                    title       = $title,
+                                    description = $description,
+                                    price       =$price,
+                                    discount    =$discount,
+                                  
+                                    quantity =$quantity,
+                                    bed_room =$bed_room,
+                                    living_room=$living_room,
+                                    kitchen=$kitchen,
+                                    parking=$parking,
+                                    toilet=$toilet,
+                                    location=$location,
+                                    image_one=$folder1,
+                                    image_two=$folder2,
+                                    image_three=$folder3
+                                    WHERE id=$flatid";
+                                     if ($con->query($sql) === TRUE) {
                        
-                            move_uploaded_file($tempnameone, $folder1);
-                            move_uploaded_file($tempnametwo, $folder2);
-                            move_uploaded_file($tempnamethree, $folder3);
-                    echo "<span class='success-msg'>New record created successfully</span>";
-                    } else {
-                        echo "Error: " . $sql . "<br>" . $conn->error;
-                    }
+                                        move_uploaded_file($tempnameone, $folder1);
+                                        move_uploaded_file($tempnametwo, $folder2);
+                                        move_uploaded_file($tempnamethree, $folder3);
+                                        echo "<script>window.location='view_flat.php';</script>";
+                                } else {
+                                    echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
+                                }
                         }
-                        
-                        
-                       
-                    
+                   
                     }
-                    if (empty($_GET['id']) || $_GET['id']==NULL|| !isset($_GET['id'])) {
-                        echo "<script>window.location='view_flat.php';</script>";
-             
-                    }
-                    else {
-                        $flatid=$_GET['id'];
-                        $query = "SELECT * FROM properties WHERE id=$flatid";
-                        $result = $con->query($query);
-                        if ($result->num_rows > 0) {
-                            $value = mysqli_fetch_array($result);
-                        }
-                    }
+                   
 
                     ?>
                     <!-- Page Heading -->
@@ -187,7 +224,7 @@
                         <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">location</label>
-                                    <input type="text" value="../<?php echo $value['location'];?>" name="location" class="form-control" id="exampleInputEmail1" >
+                                    <input type="text" value="<?php echo $value['location'];?>" name="location" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                         </div>
