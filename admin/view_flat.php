@@ -42,7 +42,7 @@
                                       
                                          $con = new mysqli("localhost", "root", "", "realstate");
                                       
-                                                 $query = "SELECT * FROM properties Order By id desc";
+                                                 $query = "SELECT * FROM properties left join users on properties.agent_id = users.user_id Order By properties.id desc";
                                                  $result = $con->query($query);
                                                  if ($result->num_rows > 0) {
                                                      foreach ($result as $key => $value) {
@@ -52,7 +52,7 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $key+1; ?></td>
-                                            <td><?php echo $value['title']; ?></td>
+                                            <td><?php echo $value['title']; ?> Sqft BY <?php echo $value['name']; ?></td>
                                             <td><?php echo $value['bed_room']." Bed ".$value['living_room']."Drowing-Dining".$value['kitchen']."Kitchen".$value['toilet']."Toilet"; ?></td>
                                             <td><?php echo $value['price']; ?></td>
                                             <td><?php echo $value['discount']; ?></td>

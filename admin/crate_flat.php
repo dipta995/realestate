@@ -43,7 +43,7 @@
                         }
                         else{
                             $sql = "INSERT INTO properties (title,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three)
-                    VALUES ('$title','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',1,'$folder1','$folder2','$folder3')";
+                    VALUES ('$title','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',3,'$folder1','$folder2','$folder3')";
 
                     if ($con->query($sql) === TRUE) {
                        
@@ -73,7 +73,7 @@
                             <div class="col-md-6">
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Title</label>
-                                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" >
+                                    <input type="number" min="0" name="title" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                             </div>

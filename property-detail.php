@@ -32,32 +32,32 @@ else {
 
 <div class="hot-properties hidden-xs">
 <h4>Hot Properties</h4>
-<div class="row">
-                <div class="col-lg-4 col-sm-5"><img src="images/properties/4.jpg" class="img-responsive img-circle" alt="properties"/></div>
-                <div class="col-lg-8 col-sm-7">
-                  <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                  <p class="price">$300,000</p> </div>
-              </div>
-<div class="row">
-                <div class="col-lg-4 col-sm-5"><img src="images/properties/1.jpg" class="img-responsive img-circle" alt="properties"/></div>
-                <div class="col-lg-8 col-sm-7">
-                  <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                  <p class="price">$300,000</p> </div>
-              </div>
+<?php
+ 
+                                      
+$query = "SELECT * FROM properties Order By  RAND() LIMIT 4";
+$result = $con->query($query);
+if ($result->num_rows > 0) {
+    foreach ($result as $key => $data) {
+?>
 
-<div class="row">
-                <div class="col-lg-4 col-sm-5"><img src="images/properties/3.jpg" class="img-responsive img-circle" alt="properties"/></div>
+              <div class="row">
+                <div class="col-lg-4 col-sm-5"><img src="<?php echo $data['image_one'] ?>" class="img-responsive img-circle" alt="properties"/></div>
                 <div class="col-lg-8 col-sm-7">
-                  <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                  <p class="price">$300,000</p> </div>
-              </div>
+                  <h5><a href="property-detail.php?flatid=<?php echo $data['id'] ?>"><?php echo $data['title'] ?> Sqft</a></h5>
+                  <p class="price"><?php  $dis = round(($data['price']*$data['discount'])-(($data['price']*$data['discount'])/100));
+        if ($dis!=0) {
 
-<div class="row">
-                <div class="col-lg-4 col-sm-5"><img src="images/properties/2.jpg" class="img-responsive img-circle" alt="properties"/></div>
-                <div class="col-lg-8 col-sm-7">
-                  <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                  <p class="price">$300,000</p> </div>
+          echo "<del>".$data['price']."Taka</del><br>".$dis."Taka";
+        }else{
+          echo $data['price']."Taka <br><br>";
+        }
+        ?></p> </div>
               </div>
+  <?php } } ?>
+ 
+
+ 
 
 </div>
 
@@ -73,7 +73,7 @@ else {
 
 <div class="col-lg-9 col-sm-8 ">
 
-<h2>2 room and 1 kitchen apartment</h2>
+<h2><?php echo $value['bed_room']+$value['living_room'];?> room and <?php echo $value['kitchen'];?> kitchen apartment</h2>
 <div class="row">
   <div class="col-lg-8">
   <div class="property-images">

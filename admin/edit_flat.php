@@ -42,10 +42,10 @@
 			            $one   = substr(md5(time()), 0, 10).'.'.$file_ext1;
                         $div2            = explode('.', $filenametwo);
 			            $file_ext2       = strtolower(end($div2));
-			            $two   = substr(md5(time()), 0, 10).'.'.$file_ext2;
+			            $two   = substr(md5(time()), 0, 11).'.'.$file_ext2;
                         $div3            = explode('.', $filenamethree);
 			            $file_ext3       = strtolower(end($div3));
-			            $three   = substr(md5(time()), 0, 10).'.'.$file_ext3;
+			            $three   = substr(md5(time()), 0, 12).'.'.$file_ext3;
                             $folder1 = "images/".$one;
                             $folder2 = "images/".$two;
                             $folder3 = "images/".$three;
@@ -75,6 +75,166 @@
                                     echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
                                 }
                         }
+                        elseif (!empty($file_ext1) && empty($file_ext2) && empty($file_ext3)) {
+                            $sql = "UPDATE properties 
+                                    SET
+                                    title       = '$title',
+                                    description = '$description',
+                                    price       ='$price',
+                                    discount    ='$discount',
+                                    quantity    ='$quantity',
+                                    bed_room    ='$bed_room',
+                                    living_room ='$living_room',
+                                    kitchen     ='$kitchen',
+                                    parking     ='$parking',
+                                    toilet      ='$toilet',
+                                    location    ='$location',
+                                    image_one   ='$folder1'
+                                    WHERE id=$flatid";
+                                     if ($con->query($sql) === TRUE) {
+                       
+                                        move_uploaded_file($tempnameone, '../'.$folder1);
+                                     
+                                        echo "<script>window.location='view_flat.php';</script>";
+                                } else {
+                                    echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
+                                }
+                        }
+                        elseif (empty($file_ext1) && !empty($file_ext2) && empty($file_ext3)) {
+                            $sql = "UPDATE properties 
+                                    SET
+                                    title       = '$title',
+                                    description = '$description',
+                                    price       ='$price',
+                                    discount    ='$discount',
+                                    quantity    ='$quantity',
+                                    bed_room    ='$bed_room',
+                                    living_room ='$living_room',
+                                    kitchen     ='$kitchen',
+                                    parking     ='$parking',
+                                    toilet      ='$toilet',
+                                    location    ='$location',
+                                   
+                                    image_two   ='$folder2'
+                                    WHERE id=$flatid";
+                                     if ($con->query($sql) === TRUE) {
+                       
+                                        move_uploaded_file($tempnametwo, '../'.$folder2);
+                               
+                                        echo "<script>window.location='view_flat.php';</script>";
+                                } else {
+                                    echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
+                                }
+                        }
+                        elseif (empty($file_ext1) && empty($file_ext2) && !empty($file_ext3)) {
+                            $sql = "UPDATE properties 
+                                    SET
+                                    title       = '$title',
+                                    description = '$description',
+                                    price       ='$price',
+                                    discount    ='$discount',
+                                    quantity    ='$quantity',
+                                    bed_room    ='$bed_room',
+                                    living_room ='$living_room',
+                                    kitchen     ='$kitchen',
+                                    parking     ='$parking',
+                                    toilet      ='$toilet',
+                                    location    ='$location',
+                                 
+                                    image_three ='$folder3'
+                                    WHERE id=$flatid";
+                                     if ($con->query($sql) === TRUE) {
+                       
+                                        move_uploaded_file($tempnamethree, '../'.$folder3);
+                                        echo "<script>window.location='view_flat.php';</script>";
+                                } else {
+                                    echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
+                                }
+                        }
+
+                        elseif (!empty($file_ext1) && !empty($file_ext2) && empty($file_ext3)) {
+                            $sql = "UPDATE properties 
+                                    SET
+                                    title       = '$title',
+                                    description = '$description',
+                                    price       ='$price',
+                                    discount    ='$discount',
+                                    quantity    ='$quantity',
+                                    bed_room    ='$bed_room',
+                                    living_room ='$living_room',
+                                    kitchen     ='$kitchen',
+                                    parking     ='$parking',
+                                    toilet      ='$toilet',
+                                    location    ='$location',
+                                    image_one   ='$folder1',
+                                    image_two   ='$folder2'
+                                    WHERE id=$flatid";
+                                     if ($con->query($sql) === TRUE) {
+                       
+                                        move_uploaded_file($tempnameone, '../'.$folder1);
+                                        move_uploaded_file($tempnametwo, '../'.$folder2);
+                                 
+                                        echo "<script>window.location='view_flat.php';</script>";
+                                } else {
+                                    echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
+                                }
+                        }
+                        elseif (!empty($file_ext1) && empty($file_ext2) && !empty($file_ext3)) {
+                            $sql = "UPDATE properties 
+                                    SET
+                                    title       = '$title',
+                                    description = '$description',
+                                    price       ='$price',
+                                    discount    ='$discount',
+                                    quantity    ='$quantity',
+                                    bed_room    ='$bed_room',
+                                    living_room ='$living_room',
+                                    kitchen     ='$kitchen',
+                                    parking     ='$parking',
+                                    toilet      ='$toilet',
+                                    location    ='$location',
+                                    image_one   ='$folder1',
+                         
+                                    image_three ='$folder3'
+                                    WHERE id=$flatid";
+                                     if ($con->query($sql) === TRUE) {
+                       
+                                        move_uploaded_file($tempnameone, '../'.$folder1);
+                           
+                                        move_uploaded_file($tempnamethree, '../'.$folder3);
+                                        echo "<script>window.location='view_flat.php';</script>";
+                                } else {
+                                    echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
+                                }
+                        }
+                        elseif (empty($file_ext1) && !empty($file_ext2) && !empty($file_ext3)) {
+                            $sql = "UPDATE properties 
+                                    SET
+                                    title       = '$title',
+                                    description = '$description',
+                                    price       ='$price',
+                                    discount    ='$discount',
+                                    quantity    ='$quantity',
+                                    bed_room    ='$bed_room',
+                                    living_room ='$living_room',
+                                    kitchen     ='$kitchen',
+                                    parking     ='$parking',
+                                    toilet      ='$toilet',
+                                    location    ='$location',
+                 
+                                    image_two   ='$folder2',
+                                    image_three ='$folder3'
+                                    WHERE id=$flatid";
+                                     if ($con->query($sql) === TRUE) {
+                       
+             
+                                        move_uploaded_file($tempnametwo, '../'.$folder2);
+                                        move_uploaded_file($tempnamethree, '../'.$folder3);
+                                        echo "<script>window.location='view_flat.php';</script>";
+                                } else {
+                                    echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
+                                }
+                        }
                        
                         
                         
@@ -82,27 +242,26 @@
                         else{
                             $sql = "UPDATE properties 
                                     SET
-                                    title       = $title,
-                                    description = $description,
-                                    price       =$price,
-                                    discount    =$discount,
-                                  
-                                    quantity =$quantity,
-                                    bed_room =$bed_room,
-                                    living_room=$living_room,
-                                    kitchen=$kitchen,
-                                    parking=$parking,
-                                    toilet=$toilet,
-                                    location=$location,
-                                    image_one=$folder1,
-                                    image_two=$folder2,
-                                    image_three=$folder3
+                                    title       = '$title',
+                                    description = '$description',
+                                    price       ='$price',
+                                    discount    ='$discount',
+                                    quantity    ='$quantity',
+                                    bed_room    ='$bed_room',
+                                    living_room ='$living_room',
+                                    kitchen     ='$kitchen',
+                                    parking     ='$parking',
+                                    toilet      ='$toilet',
+                                    location    ='$location',
+                                    image_one   ='$folder1',
+                                    image_two   ='$folder2',
+                                    image_three ='$folder3'
                                     WHERE id=$flatid";
                                      if ($con->query($sql) === TRUE) {
                        
-                                        move_uploaded_file($tempnameone, $folder1);
-                                        move_uploaded_file($tempnametwo, $folder2);
-                                        move_uploaded_file($tempnamethree, $folder3);
+                                        move_uploaded_file($tempnameone, '../'.$folder1);
+                                        move_uploaded_file($tempnametwo, '../'.$folder2);
+                                        move_uploaded_file($tempnamethree, '../'.$folder3);
                                         echo "<script>window.location='view_flat.php';</script>";
                                 } else {
                                     echo "Error: " . $sql . "<br>" . $con->error.__LINE__;
@@ -123,8 +282,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                  <div class="form-group">
-                                    <label for="exampleInputEmail1">Title</label>
-                                    <input type="text" value="<?php echo $value['title'];?>" name="title" class="form-control" id="exampleInputEmail1" >
+                                    <label for="exampleInputEmail1">Title (sqft)</label>
+                                    <input type="number" min='0' value="<?php echo $value['title'];?>" name="title" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                             </div>

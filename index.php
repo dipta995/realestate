@@ -161,8 +161,17 @@
             }
           ?></div>
         </div>
-        <h4><a href="property-detail.php"><?php echo $value['title'];?></a></h4>
-        <p class="price">Price: <?php echo $value['price'];?>Taka</p>
+        <h4><a href="property-detail.php"><?php echo $value['title'];?> Sqft</a></h4>
+        <p class="price">Price: 
+         <?php  $dis = round(($value['price']*$value['discount'])-(($value['price']*$value['discount'])/100));
+        if ($dis!=0) {
+
+          echo "<del>".$value['price']."Taka</del><br>".$dis."Taka";
+        }else{
+          echo $value['price']."Taka <br><br>";
+        }
+        ?> </p>
+        
         <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room"><?php echo $value['bed_room']; ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room"><?php echo $value['living_room']; ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking"><?php echo $value['parking']; ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen"><?php echo $value['kitchen']; ?></span> </div>
         <a class="btn btn-primary" href="property-detail.php?flatid=<?php echo $value['id'] ?>">View Details</a>
       </div>
