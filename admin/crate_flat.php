@@ -47,9 +47,9 @@
 
                     if ($con->query($sql) === TRUE) {
                        
-                            move_uploaded_file($tempnameone, $folder1);
-                            move_uploaded_file($tempnametwo, $folder2);
-                            move_uploaded_file($tempnamethree, $folder3);
+                            move_uploaded_file($tempnameone, '../'.$folder1);
+                            move_uploaded_file($tempnametwo, '../'.$folder2);
+                            move_uploaded_file($tempnamethree, '../'.$folder3);
                     echo "<span class='success-msg'>New record created successfully</span>";
                     } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;

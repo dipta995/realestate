@@ -358,7 +358,7 @@
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Image One</label>
                                     <input type="file" name="image_one" class="form-control" id="exampleInputEmail1" ><br>
-                                    <img class="admin-image" src="<?php echo $value['image_one'];?>" alt="">
+                                    <img class="admin-image" src="../<?php echo $value['image_one'];?>" alt="">
                                     
                                 </div>
                             </div>
