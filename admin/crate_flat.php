@@ -28,10 +28,10 @@
 			            $one   = substr(md5(time()), 0, 10).'.'.$file_ext1;
                         $div2            = explode('.', $filenametwo);
 			            $file_ext2       = strtolower(end($div2));
-			            $two   = substr(md5(time()), 0, 10).'.'.$file_ext2;
+			            $two   = substr(md5(time()), 0, 11).'.'.$file_ext2;
                         $div3            = explode('.', $filenamethree);
 			            $file_ext3       = strtolower(end($div3));
-			            $three   = substr(md5(time()), 0, 10).'.'.$file_ext3;
+			            $three   = substr(md5(time()), 0, 12).'.'.$file_ext3;
                             $folder1 = "images/".$one;
                             $folder2 = "images/".$two;
                             $folder3 = "images/".$three;
@@ -52,12 +52,10 @@
                             move_uploaded_file($tempnamethree, '../'.$folder3);
                     echo "<span class='success-msg'>New record created successfully</span>";
                     } else {
-                        echo "Error: " . $sql . "<br>" . $conn->error;
+                        echo "Error: " . $sql . "<br>" . $con->error;
                     }
                         }
                         
-                        
-                       
                     
                     }
 
@@ -72,7 +70,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                  <div class="form-group">
-                                    <label for="exampleInputEmail1">Title</label>
+                                    <label for="exampleInputEmail1">Title (Sqft)</label>
                                     <input type="number" min="0" name="title" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>

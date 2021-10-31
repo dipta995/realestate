@@ -15,42 +15,26 @@
 <div class="row">
   <div class="col-lg-8  col-lg-offset-2 col-sm-12">
       <!-- agents -->
-      <div class="row">
-        <div class="col-lg-2 col-sm-2 "><a href="#"><img src="images/agents/1.jpg" class="img-responsive"  alt="agent name"></a></div>
-        <div class="col-lg-7 col-sm-7 "><h4>John Smith</h4><p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p></div>
-        <div class="col-lg-3 col-sm-3 "><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:abc@realestate.com">abc@realestete.com</a><br>
-        <span class="glyphicon glyphicon-earphone"></span> (9009) 899 889</div>
-      </div>
-      <!-- agents -->
+      <?php 
       
-       <!-- agents -->
+      $con = new mysqli("localhost", "root", "", "realstate");
+                                      
+      $query = "SELECT * FROM users WHERE status='agent'";
+      $result = $con->query($query);
+      if ($result->num_rows > 0) {
+          foreach ($result as $key => $value) {
+      ?>
       <div class="row">
-        <div class="col-lg-2 col-sm-2 "><a href="#"><img src="images/agents/2.jpg" class="img-responsive" alt="agent name"></a></div>
-        <div class="col-lg-7 col-sm-7 "><h4>John Smith</h4><p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p></div>
-        <div class="col-lg-3 col-sm-3 "><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:abc@realestate.com">abc@realestete.com</a><br>
-        <span class="glyphicon glyphicon-earphone"></span> (9009) 899 889</div>
+        <div class="col-lg-2 col-sm-2 "><a href="#"><img src="<?php echo $value['image'];?>" class="img-responsive"  alt="agent name"></a></div>
+        <div class="col-lg-7 col-sm-7 "><h4>John Smith</h4><p><?php echo $value['about_me'];?></p></div>
+        <div class="col-lg-3 col-sm-3 "><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:abc@realestate.com"><?php echo $value['email'];?></a><br>
+        <span class="glyphicon glyphicon-earphone"></span> <?php echo $value['phone'];?></div>
       </div>
       <!-- agents -->
+      <?php }} ?>
       
-
-       <!-- agents -->
-      <div class="row">
-        <div class="col-lg-2 col-sm-2 "><a href="#"><img src="images/agents/3.jpg" class="img-responsive" alt="agent name"></a></div>
-        <div class="col-lg-7 col-sm-7 "><h4>John Smith</h4><p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p></div>
-        <div class="col-lg-3 col-sm-3 "><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:abc@realestate.com">abc@realestete.com</a><br>
-        <span class="glyphicon glyphicon-earphone"></span> (9009) 899 889</div>
-      </div>
-      <!-- agents -->
       
 
-       <!-- agents -->
-      <div class="row">
-        <div class="col-lg-2 col-sm-2 "><a href="#"><img src="images/agents/4.jpg" class="img-responsive" alt="agent name"></a></div>
-        <div class="col-lg-7 col-sm-7 "><h4>John Smith</h4><p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p></div>
-        <div class="col-lg-3 col-sm-3 "><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:abc@realestate.com">abc@realestete.com</a><br>
-        <span class="glyphicon glyphicon-earphone"></span> (9009) 899 889</div>
-      </div>
-      <!-- agents -->
       
      
   </div>

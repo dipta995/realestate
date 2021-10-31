@@ -161,7 +161,7 @@
             }
           ?></div>
         </div>
-        <h4><a href="property-detail.php"><?php echo $value['title'];?> Sqft</a></h4>
+        <h4><a href="property-detail.php?flatid=<?php echo $value['id'] ?>"><?php echo $value['title'];?> Sqft</a></h4>
         <p class="price">Price: 
          <?php  $dis = round(($value['price']*$value['discount'])-(($value['price']*$value['discount'])/100));
         if ($dis!=0) {

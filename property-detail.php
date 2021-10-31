@@ -152,14 +152,20 @@ if ($result->num_rows > 0) {
 </div>
 <div class="col-lg-12 col-sm-6 ">
 <div class="enquiry">
+ 
   <h6><span class="glyphicon glyphicon-envelope"></span> Post Enquiry</h6>
-  <form role="form">
-                <input type="text" class="form-control" placeholder="Full Name"/>
-                <input type="text" class="form-control" placeholder="you@yourdomain.com"/>
-                <input type="text" class="form-control" placeholder="your number"/>
-                <textarea rows="6" class="form-control" placeholder="Whats on your mind?"></textarea>
-      <button type="submit" class="btn btn-primary" name="Submit">Send Message</button>
+  <h4 class="sent-notification"></h4>
+
+		<form method="post" id="myForm" action="mail/index.php">
+                <input type="text" id="nane" class="form-control" name="name" placeholder="Full Name"/>
+                <input type="text" id="email" class="form-control" name="email" placeholder="you@yourdomain.com"/>
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="your number"/>
+                <textarea rows="6" class="form-control" name="message" id="message" placeholder="Whats on your mind?"></textarea>
+      <!-- <button type="submit" class="btn btn-primary" name="sendmsg">Send Message</button> -->
+      <button class="btn btn-primary" type="submit"   value="Send An Email" name="sendmsg">Send Message</button>
       </form>
+      
+ 
  </div>         
 </div>
   </div>
