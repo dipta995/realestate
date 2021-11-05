@@ -18,6 +18,7 @@
                     
                     if(isset($_POST['submit'])){
                         $title = $_POST['title'];
+                        $sqft = $_POST['sqft'];
                         $description = $_POST['description'];
                         $price = $_POST['price'];
                         $discount = $_POST['discount'];
@@ -50,12 +51,13 @@
                             $folder2 = "images/".$two;
                             $folder3 = "images/".$three;
 
-                        if (empty($title) || empty($description) ||empty($location) ) {
+                        if (empty($title) || empty($sqft) || empty($description) ||empty($location) ) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>"; 
                         }elseif (empty($file_ext1) && empty($file_ext2) && empty($file_ext3)) {
                             $sql = "UPDATE properties  
                                     SET
                                     title       = '$title',
+                                    sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
@@ -79,6 +81,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
@@ -104,6 +107,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
@@ -130,6 +134,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
@@ -156,6 +161,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
@@ -183,6 +189,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
@@ -211,6 +218,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
@@ -243,6 +251,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
@@ -280,10 +289,17 @@
                         <div class="col-md-10">
                            <form action="" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Title (sqft)</label>
-                                    <input type="number" min='0' value="<?php echo $value['title'];?>" name="title" class="form-control" id="exampleInputEmail1" >
+                                    <input type="text" value="<?php echo $value['title'];?>" name="title" class="form-control" id="exampleInputEmail1" >
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1"> (sqft)</label>
+                                    <input type="number" min='0' value="<?php echo $value['sqft'];?>" name="sqft" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                             </div>

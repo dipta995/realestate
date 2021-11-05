@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
               <div class="row">
                 <div class="col-lg-4 col-sm-5"><img src="<?php echo $data['image_one'] ?>" class="img-responsive img-circle" alt="properties"/></div>
                 <div class="col-lg-8 col-sm-7">
-                  <h5><a href="property-detail.php?flatid=<?php echo $data['id'] ?>"><?php echo $data['title'] ?> Sqft</a></h5>
+                  <h5><a href="property-detail.php?flatid=<?php echo $data['id'] ?>"><?php echo $data['title'] ?></a></h5>
                   <p class="price"><?php  $dis = round(($data['price']*$data['discount'])-(($data['price']*$data['discount'])/100));
         if ($dis!=0) {
 
@@ -140,6 +140,8 @@ if ($result->num_rows > 0) {
   $que = "SELECT * FROM users WHERE user_id=$agent";
   $res = $con->query($que);
       $val = mysqli_fetch_array($res);
+      $agentemail = $val['email'];
+      
   ?>
   <p><?php echo $val['name'] ?><br><?php echo $val['phone'] ?></p>
   </div>
@@ -156,13 +158,70 @@ if ($result->num_rows > 0) {
   <h6><span class="glyphicon glyphicon-envelope"></span> Post Enquiry</h6>
   <h4 class="sent-notification"></h4>
 
-		<form method="post" id="myForm" action="mail/index.php">
+  <?php
+
+
+ if (isset($_POST['sendmsg'])) {
+   $name = $_POST['name'];
+   $email = $_POST['email'];
+   $phone = $_POST['phone'];
+   $message = $_POST['message'];
+   
+  $stateid = $_POST['id'];
+  $link = "http://localhost/realestate/property-detail.php?flatid=".$stateid;
+
+   $querysql = "INSERT INTO orders(name,email,phone,message,status,property_id)VALUES ('$name','$email','$phone','$message','0','$stateid')";
+
+   if ($con->query($querysql) === TRUE) {
+
+  require("mail/src/PHPMailer.php");
+ require("mail/src/SMTP.php");
+ require("mail/src/Exception.php");
+ require("mail/constants.php");
+ $mail = new PHPMailer\PHPMailer\PHPMailer();
+ try {      
+       $mail->IsSMTP(); 
+      //$mail->SMTPDebug = 1; 
+       $mail->SMTPAuth = true;
+       $mail->SMTPSecure = 'ssl'; 
+       $mail->Host = "smtp.gmail.com";
+       $mail->Port = 465; 
+       $mail->IsHTML(true);
+       $mail->Username = "tanishrahman634@gmail.com";
+       $mail->Password =PASSWORD;
+       $mail->SetFrom("tanishrahman634@gmail.com");
+  
+        $mail->isHTML(true); 
+        $mail->Subject = "Customer details";
+        $mail->Body = "<h4>".$name."(".$email.$phone.")"."</h4> <p>".$message."</p><br>".$link;
+       $mail->AddAddress($agentemail);
+        $mail->AddAddress("tanishrahman634@gmail.com");
+       if($mail->Send()){
+         //echo $agentemail;
+      echo "Record Accepted Successfully";
+       }else{
+
+       }
+       
+   } catch (Exception $e) {
+        
+   }
+
+
+}else{
+  echo "Error: " . $querysql . "<br>" . $con->error.__LINE__;
+}
+}
+?>
+		<form method="post"  action="">
+                <input type="hidden" id="nane" class="form-control" name="id" value="<?php echo $flatid;?>"/>
+               
                 <input type="text" id="nane" class="form-control" name="name" placeholder="Full Name"/>
                 <input type="text" id="email" class="form-control" name="email" placeholder="you@yourdomain.com"/>
                 <input type="text" class="form-control" name="phone" id="phone" placeholder="your number"/>
                 <textarea rows="6" class="form-control" name="message" id="message" placeholder="Whats on your mind?"></textarea>
       <!-- <button type="submit" class="btn btn-primary" name="sendmsg">Send Message</button> -->
-      <button class="btn btn-primary" type="submit"   value="Send An Email" name="sendmsg">Send Message</button>
+            <button class="btn btn-primary" type="submit" name="sendmsg">Send Message</button>
       </form>
       
  

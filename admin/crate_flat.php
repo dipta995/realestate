@@ -4,6 +4,7 @@
                     $con = new mysqli("localhost", "root", "", "realstate");
                     if(isset($_POST['submit'])){
                         $title = $_POST['title'];
+                        $sqft = $_POST['sqft'];
                         $description = $_POST['description'];
                         $price = $_POST['price'];
                         $discount = $_POST['discount'];
@@ -15,7 +16,7 @@
                         $toilet = $_POST['toilet'];
                         $location = $_POST['location'];
 
-                       
+                       $flatcode = time();
 
                         $filenameone = $_FILES["image_one"]["name"];
                         $filenametwo = $_FILES["image_two"]["name"];
@@ -42,8 +43,8 @@
                             echo "<span class='error-msg'>Three image is required</span>";
                         }
                         else{
-                            $sql = "INSERT INTO properties (title,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three)
-                    VALUES ('$title','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',3,'$folder1','$folder2','$folder3')";
+                            $sql = "INSERT INTO properties (title,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three)
+                    VALUES ('$title','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',3,'$folder1','$folder2','$folder3')";
 
                     if ($con->query($sql) === TRUE) {
                        
@@ -68,10 +69,17 @@
                         <div class="col-md-10">
                            <form action="" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                  <div class="form-group">
-                                    <label for="exampleInputEmail1">Title (Sqft)</label>
-                                    <input type="number" min="0" name="title" class="form-control" id="exampleInputEmail1" >
+                                    <label for="exampleInputEmail1">Title</label>
+                                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" >
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">sqft</label>
+                                    <input type="number" min="0" name="sqft" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                             </div>

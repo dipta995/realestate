@@ -22,6 +22,7 @@
                                             <th>Price</th>
                                             <th>Discount</th>
                                             <th>Image</th>
+                                            <th>details</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -34,7 +35,9 @@
                                             <th>Rooms</th>
                                             <th>Price</th>
                                             <th>Discount</th>
+                                             
                                             <th>Image</th>
+                                            <th>details</th>
                                             <th>Action</th>
                                         </tr>
                                         
@@ -44,7 +47,7 @@
                                       
                                          $con = new mysqli("localhost", "root", "", "realstate");
                                       
-                                                 $query = "SELECT * FROM properties left join users on properties.agent_id = users.user_id Order By properties.id desc";
+                                                 $query = "SELECT * FROM orders left join properties on properties.id = orders.property_id Order By orders.created_at desc";
                                                  $result = $con->query($query);
                                                  if ($result->num_rows > 0) {
                                                      foreach ($result as $key => $value) {
@@ -59,20 +62,11 @@
                                             <td><?php echo $value['bed_room']." Bed ".$value['living_room']."Drowing-Dining".$value['kitchen']."Kitchen".$value['toilet']."Toilet"; ?></td>
                                             <td><?php echo $value['price']; ?></td>
                                             <td><?php echo $value['discount']; ?></td>
+                                            <td><?php echo $value['name']."||".$value['email']."||".$value['phone']; ?></td>
                                             <td><img class="admin-image" src="../<?php echo $value['image_one']; ?>" alt=""></td>
-                                            <td><a href="edit_flat.php?id=<?php echo $value['id'];?>">Edit</a>||<a href="?delete=<?php echo $value['id'];?>">Delete</a></td>
+
                                         </tr>
-                                                        <?php }}
-                                                          if (isset($_GET['delete'])) {
-                                                            $delid=$_GET['delete'];
-                                                            $query = "DELETE FROM properties WHERE id=$delid";
-                                                            $result = $con->query($query);
-                                                            if ($result) {
-                                                                echo "<script>window.location='view_flat.php';</script>";
-                                                            }
-                                                               // echo "<script>window.location='view_flat.php';</script>";
-                                                        }
-                                                        ?>
+                                                        <?php }} ?>
                                     </tbody>
                                 </table>
                             </div>
