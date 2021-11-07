@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Realestate Bootstrap Theme </title>
+<title>Realestate  </title>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -57,7 +57,7 @@
                <li class="active"><a href="index.php">Home</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="agents.php">Agents</a></li>         
-                <li><a href="blog.php">Blog</a></li>
+                <li><a href="login.php">Login</a></li>
                 <li><a href="contact.php">Contact</a></li>
               </ul>
             </div>

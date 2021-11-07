@@ -13,17 +13,101 @@
 <div class="spacer">
 <div class="row register">
   <div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 ">
+  <?php
 
 
-                <input type="text" class="form-control" placeholder="Full Name" name="form_name">
-                <input type="text" class="form-control" placeholder="Enter Email" name="form_email">
-                <input type="password" class="form-control" placeholder="Password" name="form_phone">
-                <input type="password" class="form-control" placeholder="Confirm Password" name="form_phone">
+                    $con = new mysqli("localhost", "root", "", "realstate");  
+                    
+                    if (isset($_GET['otp']) && isset($_GET['otp'])!=NULL && !empty($_GET['otp']) ) {
+    $otp = $_GET['otp'];
+      $query = "SELECT * FROM users WHERE otp='$otp'";
+                                            
+                                            $result = $con->query($query);
+                                    
+                                            if ($result->num_rows > 0) {
+                                              $value = mysqli_fetch_array($result);
+                                              $userid = $value['user_id'];
+                                              $emailaddress = $value['email'];
+                                            
+                                            }else{
+                                              echo "<script>window.location='invalid.php';</script>";
+                                            }
+  }else{
+    echo "<script>window.location='invalid.php';</script>";
+  }
+                    if(isset($_POST['submit'])){
+                        $name = $_POST['name'];
+                        $email = $emailaddress;
+                        $phone = $_POST['phone'];
+                        $password = $_POST['password'];
+                        $address = $_POST['address'];
+                        
 
-                <textarea rows="6" class="form-control" placeholder="Address" name="form_message"></textarea>
-      <button type="submit" class="btn btn-success" name="Submit">Register</button>
+                       $otpnum = time();
+
+                        $filenameone = $_FILES["image"]["name"];
+                  
+                        $tempnameone = $_FILES["image"]["tmp_name"];    
+                        
+                        $div1            = explode('.', $filenameone);
+			            $file_ext1       = strtolower(end($div1));
+			            $one   = substr(md5(time()), 0, 10).'.'.$file_ext1;
+                         
+                            $folder1 = "images/".$one;
+                            
+
+                        if (empty($name) ||empty($phone) | empty($password) ||empty($address)) {
+                            echo "<span class='error-msg'>Field Must Not be Empty</span>"; 
+                        }
+                        // elseif (empty($file_ext1)) {
+                        //     echo "<span class='error-msg'>Image is required</span>";
+                        // }
+                        else{
+                          $sql = "UPDATE users 
+                          SET
+                          name       = '$name',
+                          phone       = '$phone',
+                          status = 'user',
+                          password       ='$password',
+                          address       ='$address',
+                          otp       ='$otpnum',
+       
+                          about_me   ='$name',
+                          image ='$folder1'
+
+                          WHERE user_id=$userid";
+                            
+
+                    if ($con->query($sql) === TRUE) {
+                       
+                            move_uploaded_file($tempnameone,$folder1);
+                            
+                    echo "<span class='success-msg'>New record created successfully</span>";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $con->error;
+                    }
+                        }
+                        
+                    
+                    }
+
+                    ?>
+
+
+<form action="" method="post">
+
+
+                <input type="text" class="form-control" placeholder="Full Name" name="name">
+                <!-- <input type="text" class="form-control" placeholder="Enter Email" name="email"> -->
+                <input type="number" min="0" class="form-control" placeholder="Mobile No" name="phone">
+                <input type="password" class="form-control" placeholder=" Password" name="password">
+
+                <textarea rows="6" class="form-control" placeholder="Address" name="address"></textarea>
+                <input type="file" class="form-control" name="image">
+
+      <button type="submit" name="submit" class="btn btn-success" name="Submit">Register</button>
           
-
+      </form>
 
                 
         </div>
