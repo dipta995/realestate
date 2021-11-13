@@ -14,15 +14,15 @@
 <div class="row register">
   <div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 ">
   <?php
-                                      session_start();
+                                     
                                     if($_SESSION['admin']=="admin"){
                                         header('Location:index.php');
                                     }
                                     $con = new mysqli("localhost", "root", "", "realstate");
-                                    if(isset($_POST['submit'])){
+                                    if(isset($_POST['Submit'])){
                                         $email = $_POST['email'];
                                         $password = $_POST['password'];
-                                            $query = "SELECT * FROM users WHERE email='$email' AND password='$password' AND status = 'admin'";
+                                            $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
                                             
                                             $result = $con->query($query);
                                     
@@ -34,11 +34,17 @@
                                                 $_SESSION['name'] = $value['name'];
                                                 $_SESSION['email'] = $value['email'];
                                                 $_SESSION['user_id'] = $value['user_id'];
+                                                $_SESSION['status'] = $value['status'];
+                                                if ($value['status']=='admin') {
+                                                   
+                                                  header('Location:admin/index.php');
+                                                }else{
                                                   header('Location:index.php');
+                                                }
                                                
                                                  
                                              }else{
-                                                 echo "error";
+                                                 echo "<span style='color:red;'>error</span>";
                                              } 
                                             }
                                       

@@ -44,8 +44,10 @@
 
                                     <?php
                                       session_start();
-                                    if($_SESSION['admin']=="admin"){
+                                    if($_SESSION['status']=="admin"){
                                         header('Location:index.php');
+                                    }else{
+                                        //header('Location:../login.php');
                                     }
                                     $con = new mysqli("localhost", "root", "", "realstate");
                                     if(isset($_POST['submit'])){
@@ -63,6 +65,7 @@
                                                 $_SESSION['name'] = $value['name'];
                                                 $_SESSION['email'] = $value['email'];
                                                 $_SESSION['user_id'] = $value['user_id'];
+                                                $_SESSION['status'] = $value['status'];
                                                   header('Location:index.php');
                                                
                                                  

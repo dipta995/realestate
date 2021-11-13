@@ -1,9 +1,9 @@
 <?php
  
 session_start();
-if($_SESSION['admin']!="admin"){
-    $user_id = $_SESSION['user_id'];
-     header('Location:login.php');
+if($_SESSION['status']!="admin"){
+ 
+     header('Location:../login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -55,7 +55,7 @@ if($_SESSION['admin']!="admin"){
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3"> Admin <sup>2</sup></div>
             </a>
 
             <!-- Divider -->

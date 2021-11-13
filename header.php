@@ -31,6 +31,7 @@
 </head>
 
 <body>
+ 
 
 
 <!-- Header Starts -->
@@ -56,8 +57,21 @@
               <ul class="nav navbar-nav navbar-right">
                <li class="active"><a href="index.php">Home</a></li>
                 <li><a href="about.php">About</a></li>
-                <li><a href="agents.php">Agents</a></li>         
-                <li><a href="login.php">Login</a></li>
+                <li><a href="agents.php">Agents</a></li>  
+                <?php 
+                 session_start();
+
+                 if (isset($_GET['logout'])&& $_GET['logout']=='logout') {
+                  session_destroy();
+                  echo "<script>window.location='login.php';</script>";
+              }
+              
+                  if (($_SESSION['admin'])=='admin') { ?>
+                    <li><span style="color:white;">(<?php echo $_SESSION['name']; ?>)</span><a href="?logout=logout">Logout</a></li>
+                    <?php }else{ ?>   
+                      <li><a href="login.php">Login</a></li>
+                <?php } ?>
+                <li><a href="admin/index.php">Admin</a></li>
                 <li><a href="contact.php">Contact</a></li>
               </ul>
             </div>
