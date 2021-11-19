@@ -63,6 +63,7 @@
                                               
                                                 $_SESSION['admin'] = "admin";
                                                 $_SESSION['name'] = $value['name'];
+                                                 
                                                 $_SESSION['email'] = $value['email'];
                                                 $_SESSION['user_id'] = $value['user_id'];
                                                 $_SESSION['status'] = $value['status'];
@@ -91,13 +92,13 @@
                                       
                                        
                                     </form>
-                                    <hr>
+                                    <!-- <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.php">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-lg-2"></div>

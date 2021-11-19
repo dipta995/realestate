@@ -43,8 +43,13 @@
                                         <?php
                                       
                                          $con = new mysqli("localhost", "root", "", "realstate");
+
+                                         if ($_SESSION['status']=='admin') {  
                                       
                                                  $query = "SELECT * FROM properties left join users on properties.agent_id = users.user_id Order By properties.id desc";
+                                         }else{
+                                            $query = "SELECT * FROM properties left join users on properties.agent_id = users.user_id where agent_id=$userid Order By properties.id desc";
+                                         }
                                                  $result = $con->query($query);
                                                  if ($result->num_rows > 0) {
                                                      foreach ($result as $key => $value) {
@@ -60,7 +65,10 @@
                                             <td><?php echo $value['price']; ?></td>
                                             <td><?php echo $value['discount']; ?></td>
                                             <td><img class="admin-image" src="../<?php echo $value['image_one']; ?>" alt=""></td>
-                                            <td><a href="edit_flat.php?id=<?php echo $value['id'];?>">Edit</a>||<a href="?delete=<?php echo $value['id'];?>">Delete</a></td>
+                                           
+                                            <td>
+                                            <?php  if ($_SESSION['status']=='agent') { ?>
+                                            <a href="edit_flat.php?id=<?php echo $value['id'];?>">Edit</a>|| <?php } ?> <a href="?delete=<?php echo $value['id'];?>">Delete</a></td>
                                         </tr>
                                                         <?php }}
                                                           if (isset($_GET['delete'])) {

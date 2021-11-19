@@ -21,8 +21,8 @@
                                             <th>Rooms</th>
                                             <th>Price</th>
                                             <th>Discount</th>
+                                            <th>Name||Email||Phone</th>
                                             <th>Image</th>
-                                            <th>details</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -36,8 +36,8 @@
                                             <th>Price</th>
                                             <th>Discount</th>
                                              
+                                            <th>Name||Email||Phone</th>
                                             <th>Image</th>
-                                            <th>details</th>
                                             <th>Action</th>
                                         </tr>
                                         

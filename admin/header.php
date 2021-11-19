@@ -1,10 +1,14 @@
 <?php
  
 session_start();
-if($_SESSION['status']!="admin"){
+if($_SESSION['status']=="user" ){
  
      header('Location:../login.php');
+}elseif ($_SESSION['status']==Null ) {
+    header('Location:../login.php');
 }
+ 
+$userid = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +21,7 @@ if($_SESSION['status']!="admin"){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -55,7 +59,7 @@ if($_SESSION['status']!="admin"){
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"> Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3"> Admin <sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -86,16 +90,27 @@ if($_SESSION['status']!="admin"){
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
+                        <?php if ($_SESSION['status']=='agent') { ?>
                         <a class="collapse-item" href="crate_flat.php">Create Flat</a>
+                        <?php } ?>
                         <a class="collapse-item" href="view_flat.php">View Flat</a>
                     </div>
                 </div>
             </li>
+            <?php if ($_SESSION['status']=='admin') { ?>
             <li class="nav-item">
                 <a class="nav-link" href="order.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Orders</span></a>
             </li>
+            <?php } ?>
+            <?php if ($_SESSION['status']=='admin') { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="agent.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Agent</span></a>
+            </li>
+            <?php } ?>
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -119,9 +134,7 @@ if($_SESSION['status']!="admin"){
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
+            <div class="sidebar-heading"> Addons </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
@@ -371,7 +384,7 @@ if($_SESSION['status']!="admin"){
                                 <?php 
                                 if (isset($_GET['logout'])) {
                                     session_destroy();
-                                    echo "<script>window.location='index.php';</script>";
+                                    echo "<script>window.location='login.php';</script>";
                                 }
                                 ?>
                                 <a class="dropdown-item" href="?logout=logout" data-toggle="modal" data-target="#logoutModal">

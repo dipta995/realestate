@@ -26,7 +26,7 @@
       ?>
       <div class="row">
         <div class="col-lg-2 col-sm-2 "><a href="#"><img src="<?php echo $value['image'];?>" class="img-responsive"  alt="agent name"></a></div>
-        <div class="col-lg-7 col-sm-7 "><h4>John Smith</h4><p><?php echo $value['about_me'];?></p></div>
+        <div class="col-lg-7 col-sm-7 "><h4><?php echo $value['name'];?></h4><p><?php echo $value['about_me'];?></p></div>
         <div class="col-lg-3 col-sm-3 "><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:abc@realestate.com"><?php echo $value['email'];?></a><br>
         <span class="glyphicon glyphicon-earphone"></span> <?php echo $value['phone'];?></div>
       </div>

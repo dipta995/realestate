@@ -1,6 +1,7 @@
 <?php include 'header.php'; ?>
                 <div class="container-fluid">
                     <?php
+                    
                     $con = new mysqli("localhost", "root", "", "realstate");
                     if(isset($_POST['submit'])){
                         $title = $_POST['title'];
@@ -44,7 +45,7 @@
                         }
                         else{
                             $sql = "INSERT INTO properties (title,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three)
-                    VALUES ('$title','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',3,'$folder1','$folder2','$folder3')";
+                    VALUES ('$title','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',$userid,'$folder1','$folder2','$folder3')";
 
                     if ($con->query($sql) === TRUE) {
                        

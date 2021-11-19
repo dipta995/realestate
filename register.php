@@ -13,9 +13,7 @@
 <div class="spacer">
 <div class="row register">
   <div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 ">
-  <?php
-
-
+                <?php
                     $con = new mysqli("localhost", "root", "", "realstate");  
                     
                     if (isset($_GET['otp']) && isset($_GET['otp'])!=NULL && !empty($_GET['otp']) ) {
@@ -41,8 +39,7 @@
                         $phone = $_POST['phone'];
                         $password = $_POST['password'];
                         $address = $_POST['address'];
-                        
-
+                        $status = $_POST['status'];                      
                        $otpnum = time();
 
                         $filenameone = $_FILES["image"]["name"];
@@ -56,24 +53,23 @@
                             $folder1 = "images/".$one;
                             
 
-                        if (empty($name) ||empty($phone) | empty($password) ||empty($address)) {
+                        if (empty($name) ||empty($phone) | empty($password) ||empty($address) ||empty($status)) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>"; 
                         }
-                        // elseif (empty($file_ext1)) {
-                        //     echo "<span class='error-msg'>Image is required</span>";
-                        // }
+                        elseif (empty($file_ext1)) {
+                            echo "<span class='error-msg'>Image is required</span>";
+                        }
                         else{
                           $sql = "UPDATE users 
                           SET
-                          name       = '$name',
-                          phone       = '$phone',
-                          status = 'user',
-                          password       ='$password',
-                          address       ='$address',
-                          otp       ='$otpnum',
-       
+                          name       ='$name',
+                          phone      ='$phone',
+                          status     ='$status',
+                          password   ='$password',
+                          address    ='$address',
+                          otp        ='$otpnum',
                           about_me   ='$name',
-                          image ='$folder1'
+                          image      ='$folder1'
 
                           WHERE user_id=$userid";
                             
@@ -84,7 +80,7 @@
                             
                     echo "<span class='success-msg'>New record created successfully</span>";
                     } else {
-                        echo "Error: " . $sql . "<br>" . $con->error;
+                        echo "Error: " . $sql . "<br>" . $con->error__;
                     }
                         }
                         
@@ -94,7 +90,7 @@
                     ?>
 
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 
 
                 <input type="text" class="form-control" placeholder="Full Name" name="name">
@@ -104,6 +100,11 @@
 
                 <textarea rows="6" class="form-control" placeholder="Address" name="address"></textarea>
                 <input type="file" class="form-control" name="image">
+                <select class="form-control" name="status" id="">
+                  <option  value="">Choose</option>
+                  <option value="user">Customer</option>
+                  <option value="agent">Agent</option>
+                </select>
 
       <button type="submit" name="submit" class="btn btn-success" name="Submit">Register</button>
           
