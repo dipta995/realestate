@@ -59,6 +59,7 @@
                 <li><a href="about.php">About</a></li>
                 <li><a href="agents.php">Agents</a></li>  
                 <?php 
+                $con = new mysqli("localhost", "root", "", "realstate");
                  session_start();
 
                  if (isset($_GET['logout'])&& $_GET['logout']=='logout') {
@@ -94,9 +95,15 @@
 <a href="index.php"><img src="images/logo.png" alt="Realestate"></a>
 
               <ul class="pull-right">
-                <li><a href="buysalerent.php">Buy</a></li>
-                <li><a href="buysalerent.php">Sale</a></li>         
-                <li><a href="buysalerent.php">Rent</a></li>
+                <?php
+                   $query = "SELECT * FROM  category where flag=1 Order By cat_id desc";
+                   $result = $con->query($query);
+                   foreach ($result as $key => $value) {
+                ?>
+                <li><a href="allproduct.php?categoryid=<?php echo $value['cat_id']?>"><?php echo $value['cat_name']?></a></li>
+                <?php } ?>
+                <!-- <li><a href="buysalerent.php">Sale</a></li>         
+                <li><a href="buysalerent.php">Rent</a></li> -->
               </ul>
 </div>
 <!-- #Header Starts -->

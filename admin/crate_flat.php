@@ -16,6 +16,7 @@
                         $parking = $_POST['parking'];
                         $toilet = $_POST['toilet'];
                         $location = $_POST['location'];
+                        $cat_id = $_POST['cat_id'];
 
                        $flatcode = time();
 
@@ -44,8 +45,8 @@
                             echo "<span class='error-msg'>Three image is required</span>";
                         }
                         else{
-                            $sql = "INSERT INTO properties (title,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three)
-                    VALUES ('$title','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',$userid,'$folder1','$folder2','$folder3')";
+                            $sql = "INSERT INTO properties (title,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three,cat_id)
+                    VALUES ('$title','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',$userid,'$folder1','$folder2','$folder3','$cat_id')";
 
                     if ($con->query($sql) === TRUE) {
                        
@@ -64,11 +65,30 @@
                     ?>
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Create Flat</h1>
-                  
+                
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                            <form action="" method="post" enctype="multipart/form-data">
+                           <div class="row">
+                              <div class="col-md-2"></div>
+                              <div class="col-md-8">
+                              <div class="form-group">
+                                    <select class="form-control" name="cat_id" id="">
+                                        <option value="">--Choose--</option>
+                                        <?php
+                                            $query = "SELECT * FROM  category where flag=1 Order By cat_id desc";
+                                            $result = $con->query($query);
+                                            foreach ($result as $key => $value) {
+                                    
+                                        ?>
+                                        <option value="<?php echo $value['cat_id'];?>"><?php echo $value['cat_name'];?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="col-md-2"></div>
+                            </div>
                         <div class="row">
                             <div class="col-md-4">
                                  <div class="form-group">

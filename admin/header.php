@@ -106,6 +106,13 @@ $userid = $_SESSION['user_id'];
             <?php } ?>
             <?php if ($_SESSION['status']=='admin') { ?>
             <li class="nav-item">
+                <a class="nav-link" href="category.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Category</span></a>
+            </li>
+            <?php } ?>
+            <?php if ($_SESSION['status']=='admin') { ?>
+            <li class="nav-item">
                 <a class="nav-link" href="agent.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Agent</span></a>

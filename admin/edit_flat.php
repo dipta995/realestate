@@ -29,6 +29,7 @@
                         $parking = $_POST['parking'];
                         $toilet = $_POST['toilet'];
                         $location = $_POST['location'];
+                        $cat_id = $_POST['cat_id'];
 
                        
 
@@ -57,6 +58,7 @@
                             $sql = "UPDATE properties  
                                     SET
                                     title       = '$title',
+                                    cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
@@ -81,6 +83,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
@@ -107,6 +110,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
@@ -134,6 +138,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
@@ -161,6 +166,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
@@ -189,6 +195,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
@@ -218,6 +225,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
@@ -251,6 +259,7 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
@@ -288,6 +297,27 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                            <form action="" method="post" enctype="multipart/form-data">
+                           <div class="row">
+                              <div class="col-md-2"></div>
+                              <div class="col-md-8">
+                              <div class="form-group">
+                                    <select class="form-control" name="cat_id" id="">
+                                        <option value="">--Choose--</option>
+                                        <?php
+                                            $query = "SELECT * FROM  category where flag=1 Order By cat_id desc";
+                                            $result = $con->query($query);
+                                            foreach ($result as $key => $val) {
+                                    
+                                        ?>
+                                        <option <?php if ($val['cat_id']==$value['cat_id']) {
+                                            echo "selected";
+                                        } ?> value="<?php echo $val['cat_id'];?>"><?php echo $val['cat_name'];?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="col-md-2"></div>
+                            </div>
                         <div class="row">
                             <div class="col-md-4">
                                  <div class="form-group">

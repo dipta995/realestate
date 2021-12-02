@@ -3,7 +3,7 @@
 <div class="inside-banner">
   <div class="container"> 
     <span class="pull-right"><a href="index.php">Home</a> / Sale</span>
-    <h2>Buy, Sale & Rent</h2>
+    <h2>Products</h2>
 </div>
 </div>
 <!-- banner -->
@@ -88,7 +88,7 @@ if ($result->num_rows > 0) {
  
 <div class="row">
 <?php
-
+$categoryid=$_GET['categoryid'];
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
@@ -104,7 +104,7 @@ if ($result->num_rows > 0) {
             die();
         }
 
-        $total_pages_sql = "SELECT COUNT(*) FROM properties";
+        $total_pages_sql = "SELECT COUNT(*) FROM properties where cat_id=$categoryid";
         $result = mysqli_query($con,$total_pages_sql);
         $total_rows = mysqli_fetch_array($result)[0];
 
@@ -146,12 +146,12 @@ if ($result->num_rows > 0) {
       <ul class="pagination">
         <li><a href="?pageno=1">First</a></li>
         <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?categoryid=".$categoryid."&pageno=".($pageno - 1); } ?>">Prev</a>
         </li>
         <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?categoryid=".$categoryid."&pageno=".($pageno + 1); } ?>">Next</a>
         </li>
-        <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+        <li><a href="?categoryid=<?php echo $categoryid; ?>&pageno=<?php echo $total_pages; ?>">Last</a></li>
     </ul>
 </div>
 
