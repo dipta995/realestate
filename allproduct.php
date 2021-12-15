@@ -104,13 +104,13 @@ $categoryid=$_GET['categoryid'];
             die();
         }
 
-        $total_pages_sql = "SELECT COUNT(*) FROM properties where cat_id=$categoryid";
+        $total_pages_sql = "SELECT COUNT(*) FROM properties where cat_id=$categoryid ";
         $result = mysqli_query($con,$total_pages_sql);
         $total_rows = mysqli_fetch_array($result)[0];
 
         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-        $sqls = "SELECT * FROM properties LIMIT $offset, $no_of_records_per_page";
+        $sqls = "SELECT * FROM properties where cat_id=$categoryid LIMIT $offset, $no_of_records_per_page";
         $res_data = mysqli_query($con,$sqls);
       if ($res_data->num_rows > 0) {
           foreach ($res_data as $key => $value) {
@@ -120,13 +120,13 @@ $categoryid=$_GET['categoryid'];
       <div class="col-lg-4 col-sm-6">
       <div class="properties">
         <div class="image-holder"><img src="<?php echo $value['image_one'];?>" class="img-responsive" alt="properties">
-          <div class="status sold"><?php
+          <div style="color:red;" class="status sold"><?php
             if ($value['quantity']==0) {
               echo "SOLD";
             }
           ?></div>
         </div>
-        <h4><a href="property-detail.php?flatid=<?php echo $value['id'] ?>"><?php echo $value['title'];?> Sqft</a></h4>
+        <h4><a href="#>"><?php echo $value['title'];?> Sqft</a></h4>
         <p class="price">Price:  <?php  $dis = round(($value['price']*$value['discount'])-(($value['price']*$value['discount'])/100));
         if ($dis!=0) {
 
@@ -136,7 +136,15 @@ $categoryid=$_GET['categoryid'];
         }
         ?></p>
        <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room"><?php echo $value['bed_room']; ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room"><?php echo $value['living_room']; ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking"><?php echo $value['parking']; ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen"><?php echo $value['kitchen']; ?></span> </div>
+       <?php
+            if ($value['quantity']==0) {
+              
+            
+          ?>
+         <a class="btn btn-danger" href="#">View Details</a>
+      <?php }else{  ?>
         <a class="btn btn-primary" href="property-detail.php?flatid=<?php echo $value['id'] ?>">View Details</a>
+       <?php } ?>
       </div>
       </div>
 

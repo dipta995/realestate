@@ -17,6 +17,8 @@
                         $toilet = $_POST['toilet'];
                         $location = $_POST['location'];
                         $cat_id = $_POST['cat_id'];
+                        $floar = $_POST['floar'];
+                         $belkuni = $_POST['belkuni'];
 
                        $flatcode = time();
 
@@ -45,8 +47,8 @@
                             echo "<span class='error-msg'>Three image is required</span>";
                         }
                         else{
-                            $sql = "INSERT INTO properties (title,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three,cat_id)
-                    VALUES ('$title','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',$userid,'$folder1','$folder2','$folder3','$cat_id')";
+                            $sql = "INSERT INTO properties (title,floar,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three,cat_id,belkuni)
+                    VALUES ('$title','$floar','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',$userid,'$folder1','$folder2','$folder3','$cat_id','$belkuni')";
 
                     if ($con->query($sql) === TRUE) {
                        
@@ -90,7 +92,7 @@
                               <div class="col-md-2"></div>
                             </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Title</label>
                                     <input type="text" name="title" class="form-control" id="exampleInputEmail1" >
@@ -101,6 +103,13 @@
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">sqft</label>
                                     <input type="number" min="0" name="sqft" class="form-control" id="exampleInputEmail1" >
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Floar location</label>
+                                    <input type="text"  name="floar" placeholder="5B" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                             </div>
@@ -118,6 +127,14 @@
                                     <input type="number" step="1" min="0" value="0"  name="discount" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Belkuni</label>
+                                    <input type="number" step="1" min="0" value="1" name="belkuni" class="form-control" id="exampleInputEmail1" >
+                                    
+                                </div>
+
                             </div>
                         </div>
                         <div class="row">

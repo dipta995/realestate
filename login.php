@@ -15,7 +15,7 @@
   <div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 ">
   <?php
                                      
-                                    if($_SESSION['admin']=="admin"){
+                                    if(isset($_SESSION['admin'])=="admin"){
                                         header('Location:index.php');
                                     }
                                     $con = new mysqli("localhost", "root", "", "realstate");

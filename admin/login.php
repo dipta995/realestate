@@ -44,7 +44,7 @@
 
                                     <?php
                                       session_start();
-                                    if($_SESSION['status']=="admin"){
+                                    if(isset($_SESSION['status'])=="admin"){
                                         header('Location:index.php');
                                     }else{
                                         //header('Location:../login.php');
@@ -53,7 +53,7 @@
                                     if(isset($_POST['submit'])){
                                         $email = $_POST['email'];
                                         $password = $_POST['password'];
-                                            $query = "SELECT * FROM users WHERE email='$email' AND password='$password' AND status = 'admin'";
+                                            $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
                                             
                                             $result = $con->query($query);
                                     

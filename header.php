@@ -67,7 +67,7 @@
                   echo "<script>window.location='login.php';</script>";
               }
               
-                  if (($_SESSION['admin'])=='admin') { ?>
+                  if (isset($_SESSION['admin'])=='admin') { ?>
                     <li><span style="color:white;">(<?php echo $_SESSION['name']; ?>)</span><a href="?logout=logout">Logout</a></li>
                     <?php }else{ ?>   
                       <li><a href="login.php">Login</a></li>

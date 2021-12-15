@@ -15,10 +15,11 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>NO</th>
-                                            <th>Title</th>
+                                            <th>ID NO</th>
+                                            <th>Title(Quantity)</th>
                                             <th>Category</th>
                                             <th>sqft</th>
+                                            <th>Flat Location</th>
                                             <th>Rooms</th>
                                             <th>Price</th>
                                             <th>Discount</th>
@@ -29,10 +30,11 @@
                                     <tfoot>
 
                                         <tr>
-                                            <th>NO</th>
-                                            <th>Title</th>
+                                            <th>ID NO</th>
+                                            <th>Title(Quantity)</th>
                                             <th>Category</th>
                                             <th>sqft</th>
+                                            <th>Flat Location</th>
                                             <th>Rooms</th>
                                             <th>Price</th>
                                             <th>Discount</th>
@@ -60,16 +62,24 @@
                                                  
                                         ?>
                                         <tr>
-                                            <td><?php echo $key+1; ?></td>
-                                            <td><?php echo $value['title']; ?> </td>
+                                            <td><?php echo $value['id']; ?></td>
+                                            <td><?php echo $value['title'] . "(".$value['quantity'].")"; ?> </td>
                                             <td><?php echo $value['cat_name']; ?> </td>
                                             <td><?php echo $value['sqft']; ?> Sqft BY <?php echo $value['name']; ?></td>
+                                            <td><?php echo $value['floar']; ?> </td>
                                             <td><?php echo $value['bed_room']." Bed ".$value['living_room']."Drowing-Dining".$value['kitchen']."Kitchen".$value['toilet']."Toilet"; ?></td>
                                             <td><?php echo $value['price']; ?></td>
                                             <td><?php echo $value['discount']; ?></td>
                                             <td><img class="admin-image" src="../<?php echo $value['image_one']; ?>" alt=""></td>
                                            
                                             <td>
+                                                <?php 
+                                                
+                                                if ($value['quantity']!=0) {
+                                            
+                                                ?>
+                                            <a class="btn btn-info" href="?soldid=<?php echo $value['id'];?>">Not Sold</a>  || <?php }else{ ?>
+                                                <a class="btn btn-danger" href="#">Sold</a>  || <?php } ?>
                                             <?php  if ($_SESSION['status']=='agent') { ?>
                                             <a href="edit_flat.php?id=<?php echo $value['id'];?>">Edit</a>|| <?php } ?> <a href="?delete=<?php echo $value['id'];?>">Delete</a></td>
                                         </tr>
@@ -78,6 +88,19 @@
                                                             $delid=$_GET['delete'];
                                                             $query = "DELETE FROM properties WHERE id=$delid";
                                                             $result = $con->query($query);
+                                                            if ($result) {
+                                                                echo "<script>window.location='view_flat.php';</script>";
+                                                            }
+                                                               // echo "<script>window.location='view_flat.php';</script>";
+                                                        }
+                                                        if (isset($_GET['soldid'])) {
+                                                            $soldid=$_GET['soldid'];
+                                                            $sql = "UPDATE properties 
+                                                            SET
+                                                            quantity    =0
+
+                                                            WHERE id=$soldid";
+                                                            $result = $con->query($sql);
                                                             if ($result) {
                                                                 echo "<script>window.location='view_flat.php';</script>";
                                                             }

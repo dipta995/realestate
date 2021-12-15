@@ -30,6 +30,8 @@
                         $toilet = $_POST['toilet'];
                         $location = $_POST['location'];
                         $cat_id = $_POST['cat_id'];
+                        $floar = $_POST['floar'];
+                        $belkuni = $_POST['belkuni'];
 
                        
 
@@ -58,7 +60,9 @@
                             $sql = "UPDATE properties  
                                     SET
                                     title       = '$title',
-                                    cat_id       = '$cat_id',
+                                    cat_id      = '$cat_id',
+                                    floar       = '$floar',
+                                    belkuni       = '$belkuni',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
@@ -84,8 +88,10 @@
                                     SET
                                     title       = '$title',
                                     cat_id       = '$cat_id',
+                                    floar       = '$floar',
                                     sqft       = '$sqft',
                                     description = '$description',
+                                    belkuni       = '$belkuni',
                                     price       ='$price',
                                     discount    ='$discount',
                                     quantity    ='$quantity',
@@ -110,9 +116,11 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    floar       = '$floar',
                                     cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
+                                    belkuni       = '$belkuni',
                                     price       ='$price',
                                     discount    ='$discount',
                                     quantity    ='$quantity',
@@ -139,10 +147,12 @@
                                     SET
                                     title       = '$title',
                                     cat_id       = '$cat_id',
+                                    floar       = '$floar',
                                     sqft       = '$sqft',
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
+                                    belkuni       = '$belkuni',
                                     quantity    ='$quantity',
                                     bed_room    ='$bed_room',
                                     living_room ='$living_room',
@@ -167,8 +177,10 @@
                                     SET
                                     title       = '$title',
                                     cat_id       = '$cat_id',
+                                    floar       = '$floar',
                                     sqft       = '$sqft',
                                     description = '$description',
+                                    belkuni       = '$belkuni',
                                     price       ='$price',
                                     discount    ='$discount',
                                     quantity    ='$quantity',
@@ -195,9 +207,11 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    floar       = '$floar',
                                     cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
+                                    belkuni       = '$belkuni',
                                     price       ='$price',
                                     discount    ='$discount',
                                     quantity    ='$quantity',
@@ -226,8 +240,10 @@
                                     SET
                                     title       = '$title',
                                     cat_id       = '$cat_id',
+                                    floar       = '$floar',
                                     sqft       = '$sqft',
                                     description = '$description',
+                                    belkuni       = '$belkuni',
                                     price       ='$price',
                                     discount    ='$discount',
                                     quantity    ='$quantity',
@@ -259,9 +275,11 @@
                             $sql = "UPDATE properties 
                                     SET
                                     title       = '$title',
+                                    floar       = '$floar',
                                     cat_id       = '$cat_id',
                                     sqft       = '$sqft',
                                     description = '$description',
+                                    belkuni       = '$belkuni',
                                     price       ='$price',
                                     discount    ='$discount',
                                     quantity    ='$quantity',
@@ -319,7 +337,7 @@
                               <div class="col-md-2"></div>
                             </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Title (sqft)</label>
                                     <input type="text" value="<?php echo $value['title'];?>" name="title" class="form-control" id="exampleInputEmail1" >
@@ -330,6 +348,13 @@
                                  <div class="form-group">
                                     <label for="exampleInputEmail1"> (sqft)</label>
                                     <input type="number" min='0' value="<?php echo $value['sqft'];?>" name="sqft" class="form-control" id="exampleInputEmail1" >
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Floar location</label>
+                                    <input type="text"  name="floar" value="<?php echo $value['floar'];?>" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                             </div>
@@ -344,9 +369,17 @@
                             <div class="col-md-3">
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Discount</label>
-                                    <input type="number" value="<?php echo $value['discount'];?>" step="1" min="0" value="0"  name="discount" class="form-control" id="exampleInputEmail1" >
+                                    <input type="number" value="<?php echo $value['discount'];?>" step="1" min="0"   name="discount" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
+                            </div>
+                             <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Belkuni</label>
+                                    <input type="number" value="<?php echo $value['belkuni'];?>" step="1" min="0"  name="belkuni" class="form-control" id="exampleInputEmail1" >
+                                    
+                                </div>
+
                             </div>
                         </div>
                         <div class="row">
@@ -354,7 +387,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">quantity</label>
-                                    <input type="number" value="<?php echo $value['quantity'];?>" step="1" min="1" value="1" name="quantity" class="form-control" id="exampleInputEmail1" >
+                                    <input type="number" value="<?php echo $value['quantity'];?>" step="1" min="1"  name="quantity" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
 
@@ -362,7 +395,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Bed Room</label>
-                                    <input type="number" value="<?php echo $value['bed_room'];?>" step="1" min="1" value="1" name="bed_room" class="form-control" id="exampleInputEmail1" >
+                                    <input type="number" value="<?php echo $value['bed_room'];?>" step="1" min="1"  name="bed_room" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
 
@@ -370,7 +403,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Living Room</label>
-                                    <input type="number" value="<?php echo $value['living_room'];?>" name="living_room" step="1" min="0" value="0" class="form-control" id="exampleInputEmail1" >
+                                    <input type="number" value="<?php echo $value['living_room'];?>" name="living_room" step="1" min="0"  class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
 
@@ -378,14 +411,14 @@
                             <div class="col-md-2">
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Kitchen</label>
-                                    <input type="number" value="<?php echo $value['kitchen'];?>" name="kitchen" step="1" min="1" value="1" class="form-control" id="exampleInputEmail1" >
+                                    <input type="number" value="<?php echo $value['kitchen'];?>" name="kitchen" step="1" min="1"  class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Parking</label>
-                                    <input type="number" value="<?php echo $value['parking'];?>" name="parking" step="1" min="0" value="0" class="form-control" id="exampleInputEmail1" >
+                                    <input type="number" value="<?php echo $value['parking'];?>" name="parking" step="1" min="0"  class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
 
@@ -393,7 +426,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Toilet</label>
-                                    <input type="number" value="<?php echo $value['toilet'];?>" name="toilet" step="1" min="1" value="1" class="form-control" id="exampleInputEmail1" >
+                                    <input type="number" value="<?php echo $value['toilet'];?>" name="toilet" step="1" min="1"  class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
 

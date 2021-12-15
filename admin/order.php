@@ -16,6 +16,7 @@
                                     <thead>
                                         <tr>
                                             <th>NO</th>
+                                             <th>Flat Id</th>
                                             <th>Title</th>
                                             <th>sqft</th>
                                             <th>Rooms</th>
@@ -30,6 +31,7 @@
 
                                         <tr>
                                             <th>NO</th>
+                                            <th>Flat Id</th>
                                             <th>Title</th>
                                             <th>sqft</th>
                                             <th>Rooms</th>
@@ -46,6 +48,14 @@
                                         <?php
                                       
                                          $con = new mysqli("localhost", "root", "", "realstate");
+                                         if (isset($_GET['delid'])) {
+                                             $delid = $_GET['delid'];
+                                             $DELquery ="DELETE FROM orders WHERE order_id = $delid";
+                                               $delete = $con->query($DELquery);
+                                               if ($delete) {
+                                                   echo "<script>window.location='order.php';</script>";
+                                               }
+                                         }
                                       
                                                  $query = "SELECT * FROM orders left join properties on properties.id = orders.property_id Order By orders.created_at desc";
                                                  $result = $con->query($query);
@@ -57,6 +67,7 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $key+1; ?></td>
+                                             <td><?php echo $value['id']; ?> </td>
                                             <td><?php echo $value['title']; ?> </td>
                                             <td><?php echo $value['sqft']; ?> Sqft BY <?php echo $value['name']; ?></td>
                                             <td><?php echo $value['bed_room']." Bed ".$value['living_room']."Drowing-Dining".$value['kitchen']."Kitchen".$value['toilet']."Toilet"; ?></td>
@@ -64,6 +75,7 @@
                                             <td><?php echo $value['discount']; ?></td>
                                             <td><?php echo $value['name']."||".$value['email']."||".$value['phone']; ?></td>
                                             <td><img class="admin-image" src="../<?php echo $value['image_one']; ?>" alt=""></td>
+                                            <td><a class="btn btn-danger" href="?delid=<?php echo $value['order_id']; ?>">Delete</a></td>
 
                                         </tr>
                                                         <?php }} ?>

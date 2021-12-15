@@ -16,7 +16,7 @@ $con = new mysqli("localhost", "root", "", "realstate");
 }
 else {
   $flatid=$_GET['flatid'];
-  $query = "SELECT * FROM properties WHERE id=$flatid";
+  $query = "SELECT * FROM properties left join category on category.cat_id=properties.cat_id left join users on users.user_id =properties.agent_id WHERE id=$flatid";
   $result = $con->query($query);
   if ($result->num_rows > 0) {
       $value = mysqli_fetch_array($result);
@@ -73,7 +73,7 @@ if ($result->num_rows > 0) {
 
 <div class="col-lg-9 col-sm-8 ">
 
-<h2><?php echo $value['bed_room']+$value['living_room'];?> room and <?php echo $value['kitchen'];?> kitchen apartment</h2>
+<h2><?php  echo $value['title']; ?></h2>
 <div class="row">
   <div class="col-lg-8">
   <div class="property-images">
@@ -120,7 +120,45 @@ if ($result->num_rows > 0) {
 
 
   <div class="spacer"><h4><span class="glyphicon glyphicon-th-list"></span> Properties Detail</h4>
- <?php echo $value['description'];?>
+  <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID NO</th>
+                                            <th>Flat (Quantity)</th>
+                                            
+                                            <th>sqft</th>
+                                            <th>Flat Location</th>
+                                            
+                                            <th>RegularPrice</th>
+                                            <th>Discount price</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                   
+                                    <tbody>
+                                         
+                                       
+                                        <tr>
+                                            <td><?php echo $value['id']; ?></td>
+                                            <td><?php echo $value['bed_room']." bed".$value['living_room']." living room". $value['kitchen']." kitchen". $value['belkuni']." belkuni". $value['toilet']." toilet". $value['parking']." parking" . "(".$value['quantity'].")"; ?> </td>
+                                         
+                                            <td><?php echo $value['sqft']; ?> Sqft</td>
+                                            <td><?php echo $value['floar']; ?> </td>
+                                            
+                                            <td><?php echo $value['price']; ?> Taka</td>
+                                            <td><?php echo $value['discount']."% <br>". round(((100-$value['discount'])*$value['price'])/100); ?>Taka</td>
+                                          
+                                           
+                                             
+                                    </tbody>
+                                </table>
+                            </div>
+  
+  <div>
+
+    <?php echo $value['description'];?>
+  </div>
   </div>
   <!-- <div><h4><span class="glyphicon glyphicon-map-marker"></span> Location</h4>
 <div class="well"><iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Pulchowk,+Patan,+Central+Region,+Nepal&amp;aq=0&amp;oq=pulch&amp;sll=37.0625,-95.677068&amp;sspn=39.371738,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=Pulchowk,+Patan+Dhoka,+Patan,+Bagmati,+Central+Region,+Nepal&amp;ll=27.678236,85.316853&amp;spn=0.001347,0.002642&amp;t=m&amp;z=14&amp;output=embed"></iframe></div>
@@ -217,7 +255,7 @@ if ($result->num_rows > 0) {
                 <input type="hidden" id="nane" class="form-control" name="id" value="<?php echo $flatid;?>"/>
                
                 <input type="text" id="nane" class="form-control" name="name" placeholder="Full Name"/>
-                <input type="text" id="email" class="form-control" name="email" placeholder="you@yourdomain.com"/>
+                <input type="text" id="email" class="form-control" value="<?php echo $_SESSION['email']; ?>" readonly name="email" placeholder="you@yourdomain.com"/>
                 <input type="text" class="form-control" name="phone" id="phone" placeholder="your number"/>
                 <textarea rows="6" class="form-control" name="message" id="message" placeholder="Whats on your mind?"></textarea>
       <!-- <button type="submit" class="btn btn-primary" name="sendmsg">Send Message</button> -->
