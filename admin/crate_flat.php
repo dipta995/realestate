@@ -41,14 +41,14 @@
                             $folder2 = "images/".$two;
                             $folder3 = "images/".$three;
 
-                        if (empty($title) || empty($description) ||empty($location) ) {
+                        if (empty($title) || empty($description) ||empty($location) ||empty($floar) ||empty($cat_id) ) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>"; 
                         }elseif (empty($file_ext1) || empty($file_ext2)||empty($file_ext3)) {
                             echo "<span class='error-msg'>Three image is required</span>";
                         }
                         else{
                             $sql = "INSERT INTO properties (title,floar,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three,cat_id,belkuni)
-                    VALUES ('$title','$floar','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location',$userid,'$folder1','$folder2','$folder3','$cat_id','$belkuni')";
+                    VALUES ('$title','$floar','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location','$userid','$folder1','$folder2','$folder3','$cat_id','$belkuni')";
 
                     if ($con->query($sql) === TRUE) {
                        
