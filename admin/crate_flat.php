@@ -1,12 +1,18 @@
 <?php include 'header.php'; ?>
                 <div class="container-fluid">
                     <?php
-                    
+         function validation($data){
+        $data = trim($data);
+        $data = stripcslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
                     $con = new mysqli("localhost", "root", "", "realstate");
                     if(isset($_POST['submit'])){
-                        $title = $_POST['title'];
+                        $title = validation($_POST['title']);
                         $sqft = $_POST['sqft'];
-                        $description = $_POST['description'];
+                        $description = validation($_POST['description']);
+                        $description = mysqli_real_escape_string($con,$description);
                         $price = $_POST['price'];
                         $discount = $_POST['discount'];
                         $quantity = $_POST['quantity'];
