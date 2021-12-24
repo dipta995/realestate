@@ -39,9 +39,9 @@
                         $phone = $_POST['phone'];
                         $password = $_POST['password'];
                         $address = $_POST['address'];
-                        $status = $_POST['status'];                      
+                        $status = $_POST['status'];     
+                        $division = $_POST['division'];                  
                        $otpnum = time();
-
                         $filenameone = $_FILES["image"]["name"];
                   
                         $tempnameone = $_FILES["image"]["tmp_name"];    
@@ -53,7 +53,7 @@
                             $folder1 = "images/".$one;
                             
 
-                        if (empty($name) ||empty($phone) | empty($password) ||empty($address) ||empty($status)) {
+                        if (empty($name) ||empty($phone) | empty($password) ||empty($address) ||empty($division) ||empty($status)) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>"; 
                         }
                         elseif (empty($file_ext1)) {
@@ -67,6 +67,7 @@
                           status     ='$status',
                           password   ='$password',
                           address    ='$address',
+                          division    ='$division',
                           otp        ='$otpnum',
                           about_me   ='$name',
                           image      ='$folder1'
@@ -100,8 +101,22 @@
 
                 <textarea rows="6" class="form-control" placeholder="Address" name="address"></textarea>
                 <input type="file" class="form-control" name="image">
+
+                 <select class="form-control" name="division" id="">
+                  <option  value="">Choose division</option>
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Khulna">Khulna</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Barishal">Barishal</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Barishal">Rangpur</option>
+                  <option value="Sylhet">Mymensingh</option>
+ 
+                </select>
+
                 <select class="form-control" name="status" id="">
-                  <option  value="">Choose</option>
+                  <option  value="">Choose Account type</option>
                   <option value="user">Customer</option>
                   <option value="agent">Agent</option>
                 </select>

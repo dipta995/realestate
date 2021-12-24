@@ -14,42 +14,47 @@
 
 <div class="row">
 <div class="col-lg-3 col-sm-4 ">
-
+<form action="search.php" method="get">
   <div class="search-form"><h4><span class="glyphicon glyphicon-search"></span> Search for</h4>
-    <input type="text" class="form-control" placeholder="Search of Properties">
+    <input type="text"  name="key" class="form-control" placeholder="Search of Properties">
     <div class="row">
-            <div class="col-lg-5">
-              <select class="form-control">
-                <option>Buy</option>
-                <option>Rent</option>
-                <option>Sale</option>
-              </select>
+            <div class="col-lg-12">
+              <select required class="form-control" name="div" id="">
+                <option selected="true" disabled="disabled" value="">Choose division</option>
+                  <option  value="">Choose division</option>
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Khulna">Khulna</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Barishal">Barishal</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Barishal">Rangpur</option>
+                  <option value="Sylhet">Mymensingh</option>
+ 
+                </select>
             </div>
-            <div class="col-lg-7">
-              <select class="form-control">
-                <option>Price</option>
-                <option>$150,000 - $200,000</option>
-                <option>$200,000 - $250,000</option>
-                <option>$250,000 - $300,000</option>
-                <option>$300,000 - above</option>
-              </select>
-            </div>
+             
           </div>
 
           <div class="row">
           <div class="col-lg-12">
-              <select class="form-control">
-                <option>Property Type</option>
-                <option>Apartment</option>
-                <option>Building</option>
-                <option>Office Space</option>
+               <select required name="cat" class="form-control">
+                <option selected="true" disabled="disabled"  value="">--Choose--</option>
+                 <?php
+                   $query = "SELECT * FROM  category where flag=1 Order By cat_id desc";
+                   $result = $con->query($query);
+                   foreach ($result as $key => $value) {
+                ?>
+                <option value="<?php echo $value['cat_name']?>" ><?php echo $value['cat_name']?></option>
+              <?php } ?>
+                
               </select>
               </div>
           </div>
-          <button class="btn btn-primary">Find Now</button>
+          <button class="btn btn-success" type="submit" name="search">Find Now</button>
 
   </div>
-
+</form>
 
 
 <div class="hot-properties hidden-xs">

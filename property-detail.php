@@ -9,6 +9,9 @@
 <!-- banner -->
 
 <?php
+if (!isset($_SESSION['admin'])=='admin') { 
+  echo "<script>window.location='login.php';</script>";
+ }
 $con = new mysqli("localhost", "root", "", "realstate");
  if (empty($_GET['flatid']) || $_GET['flatid']==NULL|| !isset($_GET['flatid'])) {
   echo "<script>window.location='index.php';</script>";

@@ -3,69 +3,46 @@
 <div class="">
     
 
-            <div id="slider" class="sl-slider-wrapper">
+  <div id="slider" class="sl-slider-wrapper">
 
         <div class="sl-slider">
-        
+        <?php 
+
+ $con = new mysqli("localhost", "root", "", "realstate");
+                                      
+      $query = "SELECT * FROM properties ORDER BY RAND() limit 5";
+      $result = $con->query($query);
+      if ($result->num_rows > 0) {
+          foreach ($result as $i => $val) {
+        ?>
+
+        <style type="text/css">
+ .bg-img-<?php echo $i+1; ?> {
+  background-image: url(<?php echo $val['image_one']; ?>);
+}
+
+        </style>
           <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
             <div class="sl-slide-inner">
-              <div class="bg-img bg-img-1"></div>
-              <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+              <div class="bg-img bg-img-<?php echo $i+1; ?>"></div>
+              <h2><a href="property-detail.php?flatid=<?php echo $val['id'] ?>"><?php echo $val['bed_room']." Bed Rooms ".$val['living_room']." living room and ".$val['toilet']." toilet"; ?> on Sale</a></h2>
+              <a href="property-detail.php?flatid=<?php echo $val['id'] ?>">
               <blockquote>              
-              <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia</p>
-              <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-              <cite>$ 20,000,000</cite>
-              </blockquote>
+              <p class="location"><span class="glyphicon glyphicon-map-marker"></span> <?php echo $val['location']; ?></p>
+              
+              <cite><?php   $dis = round(($val['price']*$val['discount'])-(($val['price']*$val['discount'])/100));
+        if ($dis!=0) {
+
+          echo "<del>".$val['price']."Taka</del><br>".$dis."Taka";
+        }else{
+          echo $val['price']."Taka <br><br>";
+        } ?></cite>
+              </blockquote></a>
             </div>
           </div>
-          
-          <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-            <div class="sl-slide-inner">
-              <div class="bg-img bg-img-2"></div>
-              <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
-              <blockquote>              
-              <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia</p>
-              <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-              <cite>$ 20,000,000</cite>
-              </blockquote>
-            </div>
-          </div>
-          
-          <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-            <div class="sl-slide-inner">
-              <div class="bg-img bg-img-3"></div>
-              <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
-              <blockquote>              
-              <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia</p>
-              <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-              <cite>$ 20,000,000</cite>
-              </blockquote>
-            </div>
-          </div>
-          
-          <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
-            <div class="sl-slide-inner">
-              <div class="bg-img bg-img-4"></div>
-              <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
-              <blockquote>              
-              <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia</p>
-              <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-              <cite>$ 20,000,000</cite>
-              </blockquote>
-            </div>
-          </div>
-          
-          <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
-            <div class="sl-slide-inner">
-              <div class="bg-img bg-img-5"></div>
-              <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
-              <blockquote>              
-              <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia</p>
-              <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-              <cite>$ 20,000,000</cite>
-              </blockquote>
-            </div>
-          </div>
+          <?php } }?>
+      
+
         </div><!-- /sl-slider -->
 
 
@@ -86,68 +63,72 @@
 <div class="banner-search">
   <div class="container"> 
     <!-- banner -->
-    <h3>Buy, Sale & Rent</h3>
+    <h3>Search </h3>
     <div class="searchbar">
       <div class="row">
         <div class="col-lg-6 col-sm-6">
-          <input type="text" class="form-control" placeholder="Search of Properties">
+          <form method="get" action="search.php">
+          <input type="text" class="form-control" name="key" placeholder="Search of Properties">
           <div class="row">
-            <div class="col-lg-3 col-sm-3 ">
-              <select class="form-control">
-                <option>Buy</option>
-                <option>Rent</option>
-                <option>Sale</option>
+            <div class="col-lg-4 col-sm-4 ">
+              <select required name="cat" class="form-control">
+                <option selected="true" disabled="disabled"  value="">--Choose--</option>
+                 <?php
+                   $query = "SELECT * FROM  category where flag=1 Order By cat_id desc";
+                   $result = $con->query($query);
+                   foreach ($result as $key => $value) {
+                ?>
+                <option value="<?php echo $value['cat_id']?>" ><?php echo $value['cat_name']?></option>
+              <?php } ?>
+                
               </select>
             </div>
-            <div class="col-lg-3 col-sm-4">
-              <select class="form-control">
+           <!--  <div class="col-lg-3 col-sm-4">
+              <select name="price" class="form-control">
                 <option>Price</option>
-                <option>$150,000 - $200,000</option>
-                <option>$200,000 - $250,000</option>
-                <option>$250,000 - $300,000</option>
-                <option>$300,000 - above</option>
+                <option>150,000 - 200,000</option>
+                <option>200,000 - 250,000</option>
+                <option>250,000 - 300,000</option>
+                <option>300,000 - above</option>
               </select>
-            </div>
-            <div class="col-lg-3 col-sm-4">
-            <select class="form-control">
-                <option>Property</option>
-                <option>Apartment</option>
-                <option>Building</option>
-                <option>Office Space</option>
-              </select>
+            </div> -->
+            <div class="col-lg-4 col-sm-4">
+             <select required class="form-control" name="div" id="">
+                  <option selected="true" disabled="disabled"  value="">Choose division</option>
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Khulna">Khulna</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Barishal">Barishal</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Barishal">Rangpur</option>
+                  <option value="Sylhet">Mymensingh</option>
+ 
+                </select>
               </div>
               <div class="col-lg-3 col-sm-4">
-              <button class="btn btn-success"  onclick="window.location.href='buysalerent.php'">Find Now</button>
+              <button class="btn btn-success" type="submit" name="search">Find Now</button>
               </div>
           </div>
-          
+          </form>
           
         </div>
+
         <div class="col-lg-5 col-lg-offset-1 col-sm-6 ">
-          <p>Join now and get updated with all the properties deals.</p>
-          <button class="btn btn-info"   data-toggle="modal" data-target="#loginpop">Login</button>        </div>
+<!--           <p>Join now and get updated with all the properties deals.</p>
+          <button class="btn btn-info"   data-toggle="modal" data-target="#loginpop">Login</button>  -->       </div>
       </div>
     </div>
   </div>
 </div>
 <!-- banner -->
 <div class="container">
-  <div class="properties-listing spacer"> <a href="buysalerent.php" class="pull-right viewall">View All Listing</a>
+  <div class="properties-listing spacer">  
     <h2>Featured Properties</h2>
     <div id="owl-example" class="owl-carousel">
-      <!-- <div class="properties">
-        <div class="image-holder"><img src="images/properties/1.jpg" class="img-responsive" alt="properties"/>
-          <div class="status sold">Sold</div>
-        </div>
-        <h4><a href="property-detail.php">Royal Inn</a></h4>
-        <p class="price">Price: $234,900</p>
-        <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-        <a class="btn btn-primary" href="property-detail.php">View Details</a>
-      </div>
-        -->
+     
      <?php 
-      $con = new mysqli("localhost", "root", "", "realstate");
-                                      
+                     
       $query = "SELECT * FROM properties Order By id desc Limit 10";
       $result = $con->query($query);
       if ($result->num_rows > 0) {
@@ -175,7 +156,10 @@
         <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room"><?php echo $value['bed_room']; ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room"><?php echo $value['living_room']; ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking"><?php echo $value['parking']; ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen"><?php echo $value['kitchen']; ?></span> </div>
         <a class="btn btn-primary" href="property-detail.php?flatid=<?php echo $value['id'] ?>">View Details</a>
       </div>
-     <?php }} ?>
+     <?php }}else{ ?>
+       <div class="col-lg-5 col-lg-offset-1 col-sm-6 ">
+          <p>Join now and get updated with all the properties deals.</p>
+          <button class="btn btn-info"   data-toggle="modal" data-target="#loginpop">Login</button> </div> <?php } ?>
       
     </div>
   </div>
@@ -197,42 +181,47 @@
           </ol>
           <!-- Carousel items -->
           <div class="carousel-inner">
-            <div class="item active">
+
+            <?php
+             
+              if (isset($_SESSION['admin'])=='admin') {
+            $userid =$_SESSION['user_id'];
+            
+            $usrqre = "SELECT * FROM users WHERE user_id = $userid ";                
+                    $res = $con->query($usrqre);
+                        $getvalue = mysqli_fetch_array($res);
+                        $division = $getvalue['division'];
+            $query = "SELECT * FROM properties WHERE division='$division' ORDER BY RAND() limit 3";
+      $result = $con->query($query);
+      if ($result->num_rows > 0) {
+          foreach ($result as $i => $val) {
+        ?>
+
+
+            <div class="item <?php if($i==0){
+              echo "active";
+            }?>">
               <div class="row">
-                <div class="col-lg-4"><img src="images/properties/1.jpg" class="img-responsive" alt="properties"/></div>
+                <div class="col-lg-4"><img src="<?php echo $val['image_one'];?>" class="img-responsive" alt="properties"/></div>
                 <div class="col-lg-8">
-                  <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                  <p class="price">$300,000</p>
-                  <a href="property-detail.php" class="more">More Detail</a> </div>
+                  <h5><a href="property-detail.php?flatid=<?php echo $val['id'] ?>"><?php echo $val['title'];?></a></h5>
+                  <p class="price"><?php $dis = round(($val['price']*$val['discount'])-(($val['price']*$val['discount'])/100));
+        if ($dis!=0) {
+
+          echo "<del>".$val['price']."Taka</del><br>".$dis."Taka";
+        }else{
+          echo $val['price']."Taka <br><br>";
+        } ?></p>
+                  <a href="property-detail.php?flatid=<?php echo $val['id'] ?>" class="more">More Detail</a> </div>
               </div>
             </div>
-            <div class="item">
-              <div class="row">
-                <div class="col-lg-4"><img src="images/properties/2.jpg" class="img-responsive" alt="properties"/></div>
-                <div class="col-lg-8">
-                  <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                  <p class="price">$300,000</p>
-                  <a href="property-detail.php" class="more">More Detail</a> </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="row">
-                <div class="col-lg-4"><img src="images/properties/3.jpg" class="img-responsive" alt="properties"/></div>
-                <div class="col-lg-8">
-                  <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                  <p class="price">$300,000</p>
-                  <a href="property-detail.php" class="more">More Detail</a> </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="row">
-                <div class="col-lg-4"><img src="images/properties/4.jpg" class="img-responsive" alt="properties"/></div>
-                <div class="col-lg-8">
-                  <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                  <p class="price">$300,000</p>
-                  <a href="property-detail.php" class="more">More Detail</a> </div>
-              </div>
-            </div>
+          <?php } } }else{ ?>
+             <div class="col-lg-5 col-lg-offset-1 col-sm-6 ">
+          <p>Join now and get Recommended properties deals.</p>
+          <a class="btn btn-info" href="login.php">Login</a>        </div>
+      </div>
+    <?php } ?>
+           
           </div>
         </div>
       </div>
