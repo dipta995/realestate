@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2021 at 05:40 PM
+-- Generation Time: Dec 26, 2021 at 04:37 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -53,6 +53,21 @@ INSERT INTO `category` (`cat_id`, `cat_name`, `flag`) VALUES
 (1, 'Office Space', 1),
 (2, 'Apartment', 1),
 (3, 'Mini Apartment', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL,
+  `name` varchar(155) NOT NULL,
+  `email` varchar(155) NOT NULL,
+  `phone` varchar(155) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -138,9 +153,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `otp`, `status`, `password`, `about_me`, `division`, `address`, `image`, `created_at`) VALUES
-(16, 'dipta', 'dipta99@gmail.com', '11111111111', 1639586814, 'admin', '12', NULL, '', NULL, NULL, '2021-12-15 16:46:54'),
-(17, 'test', 'a@g.c', '11221212121', 1639586980, 'agent', '12', NULL, '', NULL, NULL, '2021-12-15 16:49:40'),
-(19, 'Dipta Dey', 'dipta995@gmail.com', '11111111111', 1640355338, 'user', '12', 'Dipta Dey', 'Khulna', 'E0-D5-5E-E5-C9-19', 'images/c3a4b46f2b.jpg', '2021-12-24 14:02:11');
+(16, 'Dipta Dey', 'dipta99@gmail.com', '11111111111', 1639586814, 'admin', '12', 'sdfds', 'Dhaka', 'E0-D5-5E-E5-C9-19', 'images/3077322440.jpg', '2021-12-15 16:46:54'),
+(17, 'Dipta Dey', 'a@g.c', '11221212121', 1639586980, 'agent', '12345678', 'fdgd', 'Dhaka', 'E0-D5-5E-E5-C9-19', 'images/44cb0d5168.jpg', '2021-12-15 16:49:40'),
+(19, 'Dipta Dey', 'dipta995@gmail.com', '11111111111', 1640355338, 'user', '12', 'Dipta Dey', 'Khulna', 'E0-D5-5E-E5-C9-19', 'images/c3a4b46f2b.jpg', '2021-12-24 14:02:11'),
+(20, 'Dipta Dey', 'dipta996@gmail.com', '11111111112', 1640526238, 'agent', '12345678', 'Dipta Dey', 'Khulna', 'E0-D5-5E-E5-C9-19', 'images/8c8a034e95.jpg', '2021-12-26 13:16:27');
 
 --
 -- Indexes for dumped tables
@@ -157,6 +173,12 @@ ALTER TABLE `about_page`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `orders`
@@ -193,6 +215,12 @@ ALTER TABLE `category`
   MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
@@ -208,7 +236,7 @@ ALTER TABLE `properties`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
