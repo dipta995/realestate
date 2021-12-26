@@ -24,7 +24,8 @@
                         $location = $_POST['location'];
                         $cat_id = $_POST['cat_id'];
                         $floar = $_POST['floar'];
-                         $belkuni = $_POST['belkuni'];
+                        $belkuni = $_POST['belkuni'];
+                        $division = $_POST['division'];
 
                        $flatcode = time();
 
@@ -53,8 +54,8 @@
                             echo "<span class='error-msg'>Three image is required</span>";
                         }
                         else{
-                            $sql = "INSERT INTO properties (title,floar,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three,cat_id,belkuni)
-                    VALUES ('$title','$floar','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location','$userid','$folder1','$folder2','$folder3','$cat_id','$belkuni')";
+                            $sql = "INSERT INTO properties (title,floar,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three,cat_id,belkuni,division)
+                    VALUES ('$title','$floar','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location','$userid','$folder1','$folder2','$folder3','$cat_id','$belkuni','$division')";
 
                     if ($con->query($sql) === TRUE) {
                        
@@ -98,10 +99,27 @@
                               <div class="col-md-2"></div>
                             </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-9">
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Title</label>
                                     <input type="text" name="title" class="form-control" id="exampleInputEmail1" >
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Division</label>
+                                   <select required class="form-control" name="division" id="">
+                                          <option value="">Choose division</option>
+                                          <option value="Dhaka">Dhaka</option>
+                                          <option value="Khulna">Khulna</option>
+                                          <option value="Rajshahi">Rajshahi</option>
+                                          <option value="Chattogram">Chattogram</option>
+                                          <option value="Barishal">Barishal</option>
+                                          <option value="Sylhet">Sylhet</option>
+                                          <option value="Barishal">Rangpur</option>
+                                          <option value="Sylhet">Mymensingh</option>
+                                        </select>
                                     
                                 </div>
                             </div>

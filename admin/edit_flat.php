@@ -32,6 +32,7 @@
                         $cat_id = $_POST['cat_id'];
                         $floar = $_POST['floar'];
                         $belkuni = $_POST['belkuni'];
+                        $division = $_POST['division'];
 
                        
 
@@ -67,6 +68,7 @@
                                     description = '$description',
                                     price       ='$price',
                                     discount    ='$discount',
+                                    division    ='$division',
                                     quantity    ='$quantity',
                                     bed_room    ='$bed_room',
                                     living_room ='$living_room',
@@ -91,6 +93,7 @@
                                     floar       = '$floar',
                                     sqft       = '$sqft',
                                     description = '$description',
+                                    division    ='$division',
                                     belkuni       = '$belkuni',
                                     price       ='$price',
                                     discount    ='$discount',
@@ -122,6 +125,7 @@
                                     description = '$description',
                                     belkuni       = '$belkuni',
                                     price       ='$price',
+                                    division    ='$division',
                                     discount    ='$discount',
                                     quantity    ='$quantity',
                                     bed_room    ='$bed_room',
@@ -150,6 +154,7 @@
                                     floar       = '$floar',
                                     sqft       = '$sqft',
                                     description = '$description',
+                                    division    ='$division',
                                     price       ='$price',
                                     discount    ='$discount',
                                     belkuni       = '$belkuni',
@@ -182,6 +187,7 @@
                                     description = '$description',
                                     belkuni       = '$belkuni',
                                     price       ='$price',
+                                    division    ='$division',
                                     discount    ='$discount',
                                     quantity    ='$quantity',
                                     bed_room    ='$bed_room',
@@ -214,6 +220,7 @@
                                     belkuni       = '$belkuni',
                                     price       ='$price',
                                     discount    ='$discount',
+                                    division    ='$division',
                                     quantity    ='$quantity',
                                     bed_room    ='$bed_room',
                                     living_room ='$living_room',
@@ -248,6 +255,7 @@
                                     discount    ='$discount',
                                     quantity    ='$quantity',
                                     bed_room    ='$bed_room',
+                                    division    ='$division',
                                     living_room ='$living_room',
                                     kitchen     ='$kitchen',
                                     parking     ='$parking',
@@ -283,6 +291,7 @@
                                     price       ='$price',
                                     discount    ='$discount',
                                     quantity    ='$quantity',
+                                    division    ='$division',
                                     bed_room    ='$bed_room',
                                     living_room ='$living_room',
                                     kitchen     ='$kitchen',
@@ -337,16 +346,32 @@
                               <div class="col-md-2"></div>
                             </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-9">
                                  <div class="form-group">
-                                    <label for="exampleInputEmail1">Title (sqft)</label>
+                                    <label for="exampleInputEmail1">Title</label>
                                     <input type="text" value="<?php echo $value['title'];?>" name="title" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Division</label>
+                                   <select required class="form-control" name="division" id="">
+                                          <option value="<?php echo $value['division']; ?>"><?php echo $value['division']; ?></option>
+                                          <option value="Dhaka">Dhaka</option>
+                                          <option value="Khulna">Khulna</option>
+                                          <option value="Rajshahi">Rajshahi</option>
+                                          <option value="Chattogram">Chattogram</option>
+                                          <option value="Barishal">Barishal</option>
+                                          <option value="Sylhet">Sylhet</option>
+                                          <option value="Barishal">Rangpur</option>
+                                          <option value="Sylhet">Mymensingh</option>
+                                        </select>
+                                    </div>
+                            </div>
                             <div class="col-md-2">
                                  <div class="form-group">
-                                    <label for="exampleInputEmail1"> (sqft)</label>
+                                    <label for="exampleInputEmail1"> sqft</label>
                                     <input type="number" min='0' value="<?php echo $value['sqft'];?>" name="sqft" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>

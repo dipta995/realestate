@@ -33,6 +33,7 @@
                                                 $_SESSION['admin'] = "admin";
                                                 $_SESSION['name'] = $value['name'];
                                                 $_SESSION['email'] = $value['email'];
+                                                $_SESSION['phone'] = $value['phone'];
                                                 $_SESSION['user_id'] = $value['user_id'];
                                                 $_SESSION['status'] = $value['status'];
                                                 if ($value['status']=='admin') {

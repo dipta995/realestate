@@ -61,10 +61,10 @@
                                                 $value = mysqli_fetch_array($result);
                                                 //session_destroy();
                                               
-                                                $_SESSION['admin'] = "admin";
+                                               $_SESSION['admin'] = "admin";
                                                 $_SESSION['name'] = $value['name'];
-                                                 
                                                 $_SESSION['email'] = $value['email'];
+                                                $_SESSION['phone'] = $value['phone'];
                                                 $_SESSION['user_id'] = $value['user_id'];
                                                 $_SESSION['status'] = $value['status'];
                                                   header('Location:index.php');
