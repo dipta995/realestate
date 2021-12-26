@@ -56,7 +56,7 @@
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">
                <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="about.php">About</a></li>
+             <!--    <li><a href="about.php">About</a></li> -->
                 <li><a href="agents.php">Agents</a></li>  
                 <?php 
                 $con = new mysqli("localhost", "root", "", "realstate");
