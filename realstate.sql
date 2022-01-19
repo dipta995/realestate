@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2021 at 04:37 PM
+-- Generation Time: Jan 19, 2022 at 08:19 PM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -68,6 +68,35 @@ CREATE TABLE `contacts` (
   `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `replay` text NOT NULL,
+  `message_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `replay_at` timestamp NULL DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `flag` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `message`, `replay`, `message_at`, `replay_at`, `user_id`, `flag`) VALUES
+(1, 'eeeeef df', 'dsf', '2022-01-19 18:43:05', NULL, 16, 1),
+(2, 'kjdflkds jflds', 'yes done', '2022-01-19 19:03:36', '2022-01-19 19:03:57', 16, 1),
+(3, 'fsd', 'fs', '2022-01-19 19:07:37', '2022-01-19 19:12:34', 16, 1),
+(4, 'finaff\r\n', 'f', '2022-01-19 19:12:12', '2022-01-19 19:12:29', 19, 1),
+(5, 'fsf', 'ff', '2022-01-19 19:12:16', '2022-01-19 19:12:41', 19, 1),
+(6, 'df', 'df', '2022-01-19 19:17:39', '2022-01-19 19:17:53', 19, 1),
+(7, 'last test', 'okay good night\r\n', '2022-01-19 19:18:13', '2022-01-19 19:18:33', 19, 1);
 
 -- --------------------------------------------------------
 
@@ -181,6 +210,12 @@ ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -219,6 +254,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `contacts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orders`

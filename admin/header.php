@@ -1,10 +1,7 @@
 <?php
  
 session_start();
-if($_SESSION['status']=="user" ){
- 
-     header('Location:../login.php');
-}elseif ($_SESSION['status']==Null ) {
+if ($_SESSION['status']==Null ) {
     header('Location:../login.php');
 }
  
@@ -91,18 +88,22 @@ $userid = $_SESSION['user_id'];
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
+            <?php if ($_SESSION['status']!='user') { ?>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Flat</span>
                 </a>
+                <?php } ?>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <?php if ($_SESSION['status']=='agent') { ?>
                         <a class="collapse-item" href="crate_flat.php">Create Flat</a>
                         <?php } ?>
+                        <?php if ($_SESSION['status']=='agent' || $_SESSION['status']=='admin') { ?>
                         <a class="collapse-item" href="view_flat.php">View Flat</a>
+                        <?php } ?>
                     </div>
                 </div>
             </li>
