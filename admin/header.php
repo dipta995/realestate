@@ -7,6 +7,11 @@ if ($_SESSION['status']==Null ) {
  
 $userid = $_SESSION['user_id'];
  $con = new mysqli("localhost", "root", "", "realstate");  
+                                
+ $query = "SELECT * FROM users WHERE user_id=$userid";
+             $res = $con->query($query);
+                 $img = mysqli_fetch_array($res);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +26,9 @@ $userid = $_SESSION['user_id'];
 
     <title><?php if($_SESSION['status']=="agent" ) {
                    echo "Agent";
-                }else{
+                }elseif($_SESSION['status']=="agent" ){
                     echo "Admin";
-                } ?></title>
+                }else{} ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +62,7 @@ $userid = $_SESSION['user_id'];
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -73,7 +78,7 @@ $userid = $_SESSION['user_id'];
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -115,12 +120,13 @@ $userid = $_SESSION['user_id'];
             </li>
             <?php } ?>
             <?php if ($_SESSION['status']=='admin') { ?>
+                <?php if ($img['admin_log']==0) {  ?>
             <li class="nav-item">
                 <a class="nav-link" href="category.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Category</span></a>
             </li>
-            <?php } ?>
+            <?php }} ?>
             <?php if ($_SESSION['status']=='admin') { ?>
             <li class="nav-item">
                 <a class="nav-link" href="agent.php">
@@ -134,7 +140,13 @@ $userid = $_SESSION['user_id'];
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Contacts</span></a>
             </li>
-            <?php } ?>
+            <?php if ($img['admin_log']==0) {  ?>
+            <li class="nav-item">
+                <a class="nav-link" href="createadmin.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Admin Mastering</span></a>
+            </li>
+            <?php  }} ?>
             <!-- Nav Item - Utilities Collapse Menu -->
     
             <!-- Sidebar Toggler (Sidebar) -->
@@ -175,12 +187,7 @@ $userid = $_SESSION['user_id'];
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo  $_SESSION['name'];?></span>
-                                <?php
-                                
-                                $query = "SELECT * FROM users WHERE user_id=$userid";
-                                            $res = $con->query($query);
-                                                $img = mysqli_fetch_array($res);
-                                ?>
+                               
                                 <img class="img-profile rounded-circle"
                                     src="../<?php echo $img['image']; ?>">
                             </a>
@@ -200,7 +207,7 @@ $userid = $_SESSION['user_id'];
                                 <?php 
                                 if (isset($_GET['logout'])) {
                                     session_destroy();
-                                    echo "<script>window.location='login.php';</script>";
+                                    echo "<script>window.location='../login.php';</script>";
                                 }
                                 ?>
                                 <a class="dropdown-item" href="?logout=logout" data-toggle="modal" data-target="#logoutModal">

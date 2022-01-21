@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2022 at 08:19 PM
+-- Generation Time: Jan 21, 2022 at 08:23 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -152,7 +152,7 @@ CREATE TABLE `properties` (
 --
 
 INSERT INTO `properties` (`id`, `cat_id`, `title`, `floar`, `flatcode`, `sqft`, `description`, `price`, `discount`, `status`, `quantity`, `bed_room`, `living_room`, `kitchen`, `parking`, `toilet`, `division`, `location`, `agent_id`, `image_one`, `image_two`, `image_three`, `belkuni`) VALUES
-(41, 2, 'aa', '2a', '1639831740', '4444', 'zfsdf', '200000000', '0', 0, 1, 1, 1, 1, 0, 1, 'Dhaka', '344 Villa, Syndey, Australia', 17, 'images/a23f086517.jpg', 'images/a23f086517a.jpg', 'images/a23f086517a6.jpg', 1),
+(41, 2, 'aa', '2a', '1639831740', '4444', 'zfsdf', '200000000', '0', 0, 0, 1, 1, 1, 0, 1, 'Dhaka', '344 Villa, Syndey, Australia', 17, 'images/a23f086517.jpg', 'images/a23f086517a.jpg', 'images/a23f086517a6.jpg', 1),
 (42, 2, 'Eskaton has a great community and that is what makes it an excellent area to live in', '2a', '1639832094', '1200', 'Eskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live in', '200000000', '0', 0, 1, 1, 0, 1, 0, 1, 'Khulna', '344 Villa, Syndey, Australia', 17, 'images/06500e6092.jpg', 'images/06500e60925.jpg', 'images/06500e60925b.jpg', 1),
 (43, 2, '1000 Sq. ft Apartment Is Available For Sale In Green Road Which Is Tailored To Your Highest Standards', '2a', '1639833254', '1800', 'Kathalbagan is one of those areas where you will find that there\'s are quite a few things to do. The community is very friendly and there are plenty of reasons why this place is unique. The apartment here has two bedrooms and a balcony is attached to one of the bedrooms. When you enter, you will see a space\'s that can be used as the dining and the drawing area. The apartment is quite convenient and suitable for residents. \r\n\r\nProperty Features:\r\nSouth faced\r\nNumber of Floors: 9\r\nMaintenance Staff\r\nDedicated Security Guard \r\nCleaning Services\r\nNearby Amenities: Kolabagan Government Quarter Jame Mosque, Al Hera Jame Masjid\r\n\r\nSo hurry up this beautiful flat is just a call away!', '200000000', '10', 0, 1, 1, 0, 1, 0, 1, 'Dhaka', '344 Villa, Syndey, Australia', 17, 'images/12de614bee.jpg', 'images/12de614beea.jpg', 'images/12de614beeaa.jpg', 1);
 
@@ -174,6 +174,7 @@ CREATE TABLE `users` (
   `division` varchar(155) DEFAULT NULL,
   `address` text DEFAULT NULL,
   `image` varchar(190) DEFAULT NULL,
+  `admin_log` tinyint(4) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -181,11 +182,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `otp`, `status`, `password`, `about_me`, `division`, `address`, `image`, `created_at`) VALUES
-(16, 'Dipta Dey', 'dipta99@gmail.com', '11111111111', 1639586814, 'admin', '12', 'sdfds', 'Dhaka', 'E0-D5-5E-E5-C9-19', 'images/3077322440.jpg', '2021-12-15 16:46:54'),
-(17, 'Dipta Dey', 'a@g.c', '11221212121', 1639586980, 'agent', '12345678', 'fdgd', 'Dhaka', 'E0-D5-5E-E5-C9-19', 'images/44cb0d5168.jpg', '2021-12-15 16:49:40'),
-(19, 'Dipta Dey', 'dipta995@gmail.com', '11111111111', 1640355338, 'user', '12', 'Dipta Dey', 'Khulna', 'E0-D5-5E-E5-C9-19', 'images/c3a4b46f2b.jpg', '2021-12-24 14:02:11'),
-(20, 'Dipta Dey', 'dipta996@gmail.com', '11111111112', 1640526238, 'agent', '12345678', 'Dipta Dey', 'Khulna', 'E0-D5-5E-E5-C9-19', 'images/8c8a034e95.jpg', '2021-12-26 13:16:27');
+INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `otp`, `status`, `password`, `about_me`, `division`, `address`, `image`, `admin_log`, `created_at`) VALUES
+(17, 'Dipta Dey', 'a@g.c', '11221212121', 1639586980, 'agent', '12345678', 'fdgd', 'Dhaka', 'E0-D5-5E-E5-C9-19', 'images/44cb0d5168.jpg', 0, '2021-12-15 16:49:40'),
+(19, 'Dipta Dey', 'dipta995@gmail.com', '11111111111', 1640355338, 'admin', '12', 'Dipta Dey', 'Khulna', 'E0-D5-5E-E5-C9-19', 'images/c3a4b46f2b.jpg', 0, '2021-12-24 14:02:11'),
+(20, 'Dipta Dey', 'dipta996@gmail.com', '11111111112', 1640526238, 'agent', '12345678', 'Dipta Dey', 'Khulna', 'E0-D5-5E-E5-C9-19', 'images/8c8a034e95.jpg', 0, '2021-12-26 13:16:27'),
+(21, 'dipta', 'a@g.cc', '01632315609', NULL, 'admin', '12345678', NULL, 'Barishal', 'nnj', 'images/6ca27a0d5e.jpg', 1, '2022-01-21 07:16:56');
 
 --
 -- Indexes for dumped tables
@@ -277,7 +278,7 @@ ALTER TABLE `properties`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -136,7 +136,7 @@
      ?>
       <div class="properties">
         <div class="image-holder"><img src="<?php echo $value['image_one'] ?>" class="img-responsive" alt="properties"/>
-          <div class="status sold"><?php
+          <div style="color:red;" class="status sold"><?php
             if ($value['quantity']==0) {
               echo "SOLD";
             }
