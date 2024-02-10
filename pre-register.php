@@ -48,14 +48,14 @@ if ($con->query($sql) === TRUE) {
   $mail = new PHPMailer\PHPMailer\PHPMailer();
   try {      
         $mail->IsSMTP(); 
-       //$mail->SMTPDebug = 1; 
+       $mail->SMTPDebug = 0; 
         $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'ssl'; 
-        $mail->Host = "smtp.gmail.com";
-        $mail->Port = 465; 
+        $mail->SMTPSecure = 'tls'; 
+        $mail->Host = "sandbox.smtp.mailtrap.io";
+        $mail->Port = 2525; 
         $mail->IsHTML(true);
-        $mail->Username = "tanishrahman634@gmail.com";
-        $mail->Password =PASSWORD;
+        $mail->Username = "2230d510acf7c8";
+        $mail->Password ="ea31c154d9d18a";
         $mail->SetFrom("tanishrahman634@gmail.com");
    
          $mail->isHTML(true); 

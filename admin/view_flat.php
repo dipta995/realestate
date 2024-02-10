@@ -101,6 +101,12 @@
 
                                                             WHERE id=$soldid";
                                                             $result = $con->query($sql);
+                                                            $sql = "UPDATE orders 
+                                                            SET
+                                                            status    =1
+
+                                                            WHERE property_id=$soldid";
+                                                            $result = $con->query($sql);
                                                             if ($result) {
                                                                 echo "<script>window.location='view_flat.php';</script>";
                                                             }

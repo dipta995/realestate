@@ -57,7 +57,7 @@
                                                }
                                          }
                                       
-                                                 $query = "SELECT * FROM orders left join properties on properties.id = orders.property_id and  orders.status=0 Order By orders.created_at desc";
+                                                 $query = "SELECT * FROM orders left join properties on properties.id = orders.property_id where properties.agent_id = $userid  and orders.status = '0' Order By orders.created_at desc";
                                                  $result = $con->query($query);
                                                  if ($result->num_rows > 0) {
                                                      foreach ($result as $key => $value) {

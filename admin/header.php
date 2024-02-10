@@ -119,6 +119,27 @@ $userid = $_SESSION['user_id'];
                     <span>Orders</span></a>
             </li>
             <?php } ?>
+            <?php if ($_SESSION['status']=='agent') { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="order-agent.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Orders</span></a>
+            </li>
+            <?php } ?>
+            <?php if ($_SESSION['status']=='admin') { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="sold-out-admin.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Solout </span></a>
+            </li>
+            <?php } ?>
+            <?php if ($_SESSION['status']=='agent') { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="sold-out.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Solout </span></a>
+            </li>
+            <?php } ?>
             <?php if ($_SESSION['status']=='admin') { ?>
                 <?php if ($img['admin_log']==0) {  ?>
             <li class="nav-item">
