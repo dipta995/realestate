@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 08:23 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: Feb 11, 2024 at 05:14 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -85,19 +85,6 @@ CREATE TABLE `messages` (
   `flag` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`id`, `message`, `replay`, `message_at`, `replay_at`, `user_id`, `flag`) VALUES
-(1, 'eeeeef df', 'dsf', '2022-01-19 18:43:05', NULL, 16, 1),
-(2, 'kjdflkds jflds', 'yes done', '2022-01-19 19:03:36', '2022-01-19 19:03:57', 16, 1),
-(3, 'fsd', 'fs', '2022-01-19 19:07:37', '2022-01-19 19:12:34', 16, 1),
-(4, 'finaff\r\n', 'f', '2022-01-19 19:12:12', '2022-01-19 19:12:29', 19, 1),
-(5, 'fsf', 'ff', '2022-01-19 19:12:16', '2022-01-19 19:12:41', 19, 1),
-(6, 'df', 'df', '2022-01-19 19:17:39', '2022-01-19 19:17:53', 19, 1),
-(7, 'last test', 'okay good night\r\n', '2022-01-19 19:18:13', '2022-01-19 19:18:33', 19, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -147,15 +134,6 @@ CREATE TABLE `properties` (
   `belkuni` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `properties`
---
-
-INSERT INTO `properties` (`id`, `cat_id`, `title`, `floar`, `flatcode`, `sqft`, `description`, `price`, `discount`, `status`, `quantity`, `bed_room`, `living_room`, `kitchen`, `parking`, `toilet`, `division`, `location`, `agent_id`, `image_one`, `image_two`, `image_three`, `belkuni`) VALUES
-(41, 2, 'aa', '2a', '1639831740', '4444', 'zfsdf', '200000000', '0', 0, 0, 1, 1, 1, 0, 1, 'Dhaka', '344 Villa, Syndey, Australia', 17, 'images/a23f086517.jpg', 'images/a23f086517a.jpg', 'images/a23f086517a6.jpg', 1),
-(42, 2, 'Eskaton has a great community and that is what makes it an excellent area to live in', '2a', '1639832094', '1200', 'Eskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live inEskaton has a great community and that is what makes it an excellent area to live in', '200000000', '0', 0, 1, 1, 0, 1, 0, 1, 'Khulna', '344 Villa, Syndey, Australia', 17, 'images/06500e6092.jpg', 'images/06500e60925.jpg', 'images/06500e60925b.jpg', 1),
-(43, 2, '1000 Sq. ft Apartment Is Available For Sale In Green Road Which Is Tailored To Your Highest Standards', '2a', '1639833254', '1800', 'Kathalbagan is one of those areas where you will find that there\'s are quite a few things to do. The community is very friendly and there are plenty of reasons why this place is unique. The apartment here has two bedrooms and a balcony is attached to one of the bedrooms. When you enter, you will see a space\'s that can be used as the dining and the drawing area. The apartment is quite convenient and suitable for residents. \r\n\r\nProperty Features:\r\nSouth faced\r\nNumber of Floors: 9\r\nMaintenance Staff\r\nDedicated Security Guard \r\nCleaning Services\r\nNearby Amenities: Kolabagan Government Quarter Jame Mosque, Al Hera Jame Masjid\r\n\r\nSo hurry up this beautiful flat is just a call away!', '200000000', '10', 0, 1, 1, 0, 1, 0, 1, 'Dhaka', '344 Villa, Syndey, Australia', 17, 'images/12de614bee.jpg', 'images/12de614beea.jpg', 'images/12de614beeaa.jpg', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -183,10 +161,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `otp`, `status`, `password`, `about_me`, `division`, `address`, `image`, `admin_log`, `created_at`) VALUES
-(17, 'Dipta Dey', 'a@g.c', '11221212121', 1639586980, 'agent', '12345678', 'fdgd', 'Dhaka', 'E0-D5-5E-E5-C9-19', 'images/44cb0d5168.jpg', 0, '2021-12-15 16:49:40'),
-(19, 'Dipta Dey', 'dipta995@gmail.com', '11111111111', 1640355338, 'admin', '12', 'Dipta Dey', 'Khulna', 'E0-D5-5E-E5-C9-19', 'images/c3a4b46f2b.jpg', 0, '2021-12-24 14:02:11'),
-(20, 'Dipta Dey', 'dipta996@gmail.com', '11111111112', 1640526238, 'agent', '12345678', 'Dipta Dey', 'Khulna', 'E0-D5-5E-E5-C9-19', 'images/8c8a034e95.jpg', 0, '2021-12-26 13:16:27'),
-(21, 'dipta', 'a@g.cc', '01632315609', NULL, 'admin', '12345678', NULL, 'Barishal', 'nnj', 'images/6ca27a0d5e.jpg', 1, '2022-01-21 07:16:56');
+(1, 'admin', 'admin@gmail.com', NULL, 1701273268, 'admin', '12345678', NULL, NULL, NULL, NULL, 0, '2023-11-29 15:54:28'),
+(2, NULL, 'cemi@mailinator.com', NULL, 1704994419, NULL, '12345678', NULL, NULL, NULL, NULL, 0, '2024-01-11 17:33:39'),
+(3, NULL, 'info@mxsolutions.it', NULL, 1705357647, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2024-01-15 22:27:27'),
+(4, NULL, 'admin@rast.com', NULL, 1705357730, NULL, '12345678', NULL, NULL, NULL, NULL, 0, '2024-01-15 22:28:50'),
+(5, NULL, 'developer@developer.com', NULL, 1705357928, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2024-01-15 22:32:08'),
+(6, 'Test mail', 'testmail@gmail.com', '01656543432', 1707583783, 'user', '12345678', 'Test', 'Dhaka', 'Banasree Block-B ,House no - 12, Dhaka - 1219, Bangladesh', 'images/876e63d452.jpg', 0, '2024-02-10 16:47:31'),
+(7, 'Test ', 'testmail2@gmail.com', '01565434567', 1707583966, 'agent', '12345678', 'Test', 'Dhaka', 'Pro: 1 no ward, Chotomanika', 'images/9c730b3de6.jpg', 0, '2024-02-10 16:51:08');
 
 --
 -- Indexes for dumped tables
@@ -254,31 +235,31 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
