@@ -32,9 +32,11 @@
                         $filenameone = $_FILES["image_one"]["name"];
                         $filenametwo = $_FILES["image_two"]["name"];
                         $filenamethree = $_FILES["image_three"]["name"];
+                        $filenamefour = $_FILES["image_four"]["name"];
                         $tempnameone = $_FILES["image_one"]["tmp_name"];    
                         $tempnametwo = $_FILES["image_two"]["tmp_name"];  
                         $tempnamethree = $_FILES["image_three"]["tmp_name"];  
+                        $tempnamefour = $_FILES["image_four"]["tmp_name"];  
                         $div1            = explode('.', $filenameone);
 			            $file_ext1       = strtolower(end($div1));
 			            $one   = substr(md5(time()), 0, 10).'.'.$file_ext1;
@@ -44,24 +46,32 @@
                         $div3            = explode('.', $filenamethree);
 			            $file_ext3       = strtolower(end($div3));
 			            $three   = substr(md5(time()), 0, 12).'.'.$file_ext3;
+                        $div4            = explode('.', $filenamefour);
+			            $file_ext4       = strtolower(end($div4));
+                        $four   = substr(md5(time()), 0, 12).'.'.$file_ext4;
                             $folder1 = "images/".$one;
                             $folder2 = "images/".$two;
                             $folder3 = "images/".$three;
+                            $folder4 = "images/".$four;
 
                         if (empty($title) || empty($description) ||empty($location) ||empty($floar) ||empty($cat_id) ) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>"; 
-                        }elseif (empty($file_ext1) || empty($file_ext2)||empty($file_ext3)) {
+                        }elseif (empty($file_ext1) || empty($file_ext2) || empty($file_ext3)) {
                             echo "<span class='error-msg'>Three image is required</span>";
+                    
+                        }elseif (empty($file_ext4)) {
+                            echo "<span class='error-msg'>Flat Document field is required</span>";
                         }
                         else{
-                            $sql = "INSERT INTO properties (title,floar,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three,cat_id,belkuni,division)
-                    VALUES ('$title','$floar','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location','$userid','$folder1','$folder2','$folder3','$cat_id','$belkuni','$division')";
+                            $sql = "INSERT INTO properties (title,floar,flatcode,sqft,description,price,discount,status,quantity,bed_room,living_room,kitchen,parking,toilet,location,agent_id,image_one,image_two,image_three,document_file,cat_id,belkuni,division)
+                    VALUES ('$title','$floar','$flatcode','$sqft','$description', '$price','$discount','0','$quantity','$bed_room','$living_room','$kitchen','$parking','$toilet','$location','$userid','$folder1','$folder2','$folder3','$folder4','$cat_id','$belkuni','$division')";
 
                     if ($con->query($sql) === TRUE) {
                        
                             move_uploaded_file($tempnameone, '../'.$folder1);
                             move_uploaded_file($tempnametwo, '../'.$folder2);
                             move_uploaded_file($tempnamethree, '../'.$folder3);
+                            move_uploaded_file($tempnamefour, '../'.$folder4);
                     echo "<span class='success-msg'>New record created successfully</span>";
                     } else {
                         echo "Error: " . $sql . "<br>" . $con->error;
@@ -161,16 +171,11 @@
 
                             </div>
                         </div>
+                        <input type="hidden" step="1" min="1" value="1" name="quantity" class="form-control" id="exampleInputEmail1" >
                         <div class="row">
                             
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">quantity</label>
-                                    <input type="number" step="1" min="1" value="1" name="quantity" class="form-control" id="exampleInputEmail1" >
-                                    
-                                </div>
-
-                            </div>
+                       
+             
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Bed Room</label>
@@ -230,6 +235,13 @@
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Image three</label>
                                     <input type="file" name="image_three" class="form-control" id="exampleInputEmail1" >
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                    <label for="exampleInputEmail1">Flat Importent Document (For varification )</label>
+                                    <input type="file" name="image_four" class="form-control" id="exampleInputEmail1" >
                                     
                                 </div>
                             </div>

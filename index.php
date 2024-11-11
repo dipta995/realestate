@@ -10,7 +10,7 @@
 
  $con = new mysqli("localhost", "root", "", "realstate");
                                       
-      $query = "SELECT * FROM properties ORDER BY RAND() limit 5";
+      $query = "SELECT * FROM properties WHERE status=1 ORDER BY RAND() limit 5";
       $result = $con->query($query);
       if ($result->num_rows > 0) {
           foreach ($result as $i => $val) {
@@ -129,7 +129,7 @@
      
      <?php 
                      
-      $query = "SELECT * FROM properties Order By id desc Limit 10";
+      $query = "SELECT * FROM properties WHERE status=1 Order By id desc Limit 10";
       $result = $con->query($query);
       if ($result->num_rows > 0) {
           foreach ($result as $key => $value) {
